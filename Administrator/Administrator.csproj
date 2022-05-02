@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E89953ED-4EC3-4256-A438-6AE61484FF56}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Administrator</RootNamespace>
+    <AssemblyName>Administrator</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.1.3\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Contact.aspx" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\colors\beige.css" />
+    <Content Include="Content\colors\blue.css" />
+    <Content Include="Content\colors\brown.css" />
+    <Content Include="Content\colors\celadon.css" />
+    <Content Include="Content\colors\cherry.css" />
+    <Content Include="Content\colors\cyan.css" />
+    <Content Include="Content\colors\gray.css" />
+    <Content Include="Content\colors\green.css" />
+    <Content Include="Content\colors\main.css" />
+    <Content Include="Content\colors\navy.css" />
+    <Content Include="Content\colors\olive.css" />
+    <Content Include="Content\colors\orange.css" />
+    <Content Include="Content\colors\peach.css" />
+    <Content Include="Content\colors\purple.css" />
+    <Content Include="Content\colors\red.css" />
+    <Content Include="Content\colors\yellow.css" />
+    <Content Include="Content\icons.css" />
+    <Content Include="Content\invoice.css" />
+    <Content Include="Content\main-color.css" />
+    <Content Include="Content\plugins\revolutionslider.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Dashboard.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Fonts\fontawesome-webfont.svg" />
+    <Content Include="Fonts\fontello.svg" />
+    <Content Include="Fonts\iconsmind.svg" />
+    <Content Include="Fonts\simple-line-icons.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Admin.Master" />
+    <Content Include="Fonts\fontawesome-webfont.eot" />
+    <Content Include="Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Fonts\fontawesome-webfont.woff" />
+    <Content Include="Fonts\fontawesome-webfont.woff2" />
+    <Content Include="Fonts\FontAwesome.otf" />
+    <Content Include="Fonts\fontello.eot" />
+    <Content Include="Fonts\fontello.ttf" />
+    <Content Include="Fonts\fontello.woff" />
+    <Content Include="Fonts\iconsmind.eot" />
+    <Content Include="Fonts\iconsmind.ttf" />
+    <Content Include="Fonts\iconsmind.woff" />
+    <Content Include="Fonts\simple-line-icons.eot" />
+    <Content Include="Fonts\simple-line-icons.ttf" />
+    <Content Include="Fonts\simple-line-icons.woff" />
+    <Content Include="Images\blog-compact-post-01.jpg" />
+    <Content Include="Images\blog-compact-post-02.jpg" />
+    <Content Include="Images\blog-compact-post-03.jpg" />
+    <Content Include="Images\blog-post-01.jpg" />
+    <Content Include="Images\blog-post-02.jpg" />
+    <Content Include="Images\blog-post-03.jpg" />
+    <Content Include="Images\blog-widget-01.jpg" />
+    <Content Include="Images\blog-widget-02.jpg" />
+    <Content Include="Images\blog-widget-03.jpg" />
+    <Content Include="Images\category-box-01.jpg" />
+    <Content Include="Images\category-box-02.jpg" />
+    <Content Include="Images\category-box-03.jpg" />
+    <Content Include="Images\category-box-04.jpg" />
+    <Content Include="Images\category-box-05.jpg" />
+    <Content Include="Images\category-box-06.jpg" />
+    <Content Include="Images\dashboard-avatar.jpg" />
+    <Content Include="Images\happy-client-01.jpg" />
+    <Content Include="Images\happy-client-02.jpg" />
+    <Content Include="Images\happy-client-03.jpg" />
+    <Content Include="Images\listeo_bg3.jpg" />
+    <Content Include="Images\listing-item-01.jpg" />
+    <Content Include="Images\listing-item-02.jpg" />
+    <Content Include="Images\listing-item-03.jpg" />
+    <Content Include="Images\listing-item-04.jpg" />
+    <Content Include="Images\listing-item-05.jpg" />
+    <Content Include="Images\listing-item-06.jpg" />
+    <Content Include="Images\loader.gif" />
+    <Content Include="Images\logo-01.png" />
+    <Content Include="Images\logo-02.png" />
+    <Content Include="Images\logo-03.png" />
+    <Content Include="Images\logo-04.png" />
+    <Content Include="Images\logo-05.png" />
+    <Content Include="Images\logo-06.png" />
+    <Content Include="Images\logo-07.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\logo2.png" />
+    <Content Include="Images\main-search-background-01.jpg" />
+    <Content Include="Images\main-search-video-poster.jpg" />
+    <Content Include="Images\main-search-video.mp4" />
+    <Content Include="Images\our-office.jpg" />
+    <Content Include="Images\plus-icon.svg" />
+    <Content Include="Images\popular-location-01.jpg" />
+    <Content Include="Images\popular-location-02.jpg" />
+    <Content Include="Images\popular-location-03.jpg" />
+    <Content Include="Images\popular-location-04.jpg" />
+    <Content Include="Images\popular-location-05.jpg" />
+    <Content Include="Images\review-image-01.jpg" />
+    <Content Include="Images\review-image-02.jpg" />
+    <Content Include="Images\review-image-03.jpg" />
+    <Content Include="Images\reviews-avatar.jpg" />
+    <Content Include="Images\single-listing-01.jpg" />
+    <Content Include="Images\single-listing-01a.jpg" />
+    <Content Include="Images\single-listing-02.jpg" />
+    <Content Include="Images\single-listing-02a.jpg" />
+    <Content Include="Images\single-listing-03.jpg" />
+    <Content Include="Images\single-listing-03a.jpg" />
+    <Content Include="Images\single-listing-04.jpg" />
+    <Content Include="Images\single-listing-04a.jpg" />
+    <Content Include="Images\single-listing-05a.jpg" />
+    <Content Include="Images\single-listing-05b.jpg" />
+    <Content Include="Images\single-listing-05c.jpg" />
+    <Content Include="Images\single-listing-05d.jpg" />
+    <Content Include="Images\slider-bg-01.jpg" />
+    <Content Include="Images\slider-bg-02.jpg" />
+    <Content Include="Images\user-avatar.jpg" />
+    <Content Include="Images\user-profile-avatar.jpg" />
+    <Content Include="Scripts\chosen.min.js" />
+    <Content Include="Scripts\counterup.min.js" />
+    <Content Include="Scripts\custom.js" />
+    <Content Include="Scripts\daterangepicker.js" />
+    <Content Include="Scripts\dropzone.js" />
+    <Content Include="Scripts\extensions\revolution.extension.actions.min.js" />
+    <Content Include="Scripts\extensions\revolution.extension.carousel.min.js" />
+    <Content Include="Scripts\extensions\revolution.extension.kenburn.min.js" />
+    <Content Include="Scripts\extensions\revolution.extension.layeranimation.min.js" />
+    <Content Include="Scripts\extensions\revolution.extension.migration.min.js" />
+    <Content Include="Scripts\extensions\revolution.extension.navigation.min.js" />
+    <Content Include="Scripts\extensions\revolution.extension.parallax.min.js" />
+    <Content Include="Scripts\extensions\revolution.extension.slideanims.min.js" />
+    <Content Include="Scripts\extensions\revolution.extension.video.min copy.js" />
+    <Content Include="Scripts\extensions\revolution.extension.video.min.js" />
+    <Content Include="Scripts\infobox.min.js" />
+    <Content Include="Scripts\isotope.min.js" />
+    <Content Include="Scripts\jpanelmenu.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-migrate-3.1.0.min.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.countdown.min.js" />
+    <Content Include="Scripts\leaflet-autocomplete.js" />
+    <Content Include="Scripts\leaflet-control-geocoder.js" />
+    <Content Include="Scripts\leaflet-gesture-handling.min.js" />
+    <Content Include="Scripts\leaflet-listeo.js" />
+    <Content Include="Scripts\leaflet-markercluster.min.js" />
+    <Content Include="Scripts\leaflet.min.js" />
+    <Content Include="Scripts\magnific-popup.min.js" />
+    <Content Include="Scripts\maps.js" />
+    <Content Include="Scripts\markerclusterer.js" />
+    <Content Include="Scripts\mmenu.min.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\quantityButtons.js" />
+    <Content Include="Scripts\rangeslider.min.js" />
+    <Content Include="Scripts\slick.min.js" />
+    <Content Include="Scripts\sticky-kit.min.js" />
+    <Content Include="Scripts\switcher.js" />
+    <Content Include="Scripts\themepunch.revolution.min.js" />
+    <Content Include="Scripts\themepunch.tools.min.js" />
+    <Content Include="Scripts\tooltips.min.js" />
+    <Content Include="Scripts\typed.js" />
+    <Content Include="Scripts\waypoints.min.js" />
+    <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Web.config" />
+    <Content Include="Site.Mobile.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55414</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55414/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
