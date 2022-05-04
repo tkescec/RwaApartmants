@@ -13,7 +13,7 @@ namespace Administrator
         {
             if (Session["user"] == null)
             {
-                //Response.Redirect("/");
+                Response.Redirect("/");
             }
         }
     }

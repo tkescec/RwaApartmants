@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DAL;
+using DAL.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,9 +13,18 @@ namespace Administrator
 {
     public class Global : HttpApplication
     {
+        private readonly IRepository _repository;
+
+        public Global()
+        {
+            _repository = RepositoryFactory.GetRepository();
+        }
+
         void Application_Start(object sender, EventArgs e)
         {
+            Application["database"] = _repository;
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

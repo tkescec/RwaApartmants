@@ -8,10 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - Listeo Apartmants</title>
 
-    <link href="Content/style.css" rel="stylesheet" />
-    <link href="Content/main-color.css" rel="stylesheet" />
+    <webopt:bundlereference runat="server" path="~/Content/css" />
 
-    <!-- HEAD -->
+    <!-- Custom Head Elements -->
     <asp:ContentPlaceHolder ID="Head" runat="server"></asp:ContentPlaceHolder>
 
 </head>
@@ -125,5 +124,12 @@
         </div>
         <!-- Wrapper / End -->
     </form>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/App") %>
+    </asp:PlaceHolder>
+
+    <!-- Custom Scripts -->
+    <asp:ContentPlaceHolder ID="Script" runat="server"></asp:ContentPlaceHolder>
 </body>
+
 </html>

@@ -136,72 +136,16 @@
     <Content Include="Fonts\simple-line-icons.eot" />
     <Content Include="Fonts\simple-line-icons.ttf" />
     <Content Include="Fonts\simple-line-icons.woff" />
-    <Content Include="Images\blog-compact-post-01.jpg" />
-    <Content Include="Images\blog-compact-post-02.jpg" />
-    <Content Include="Images\blog-compact-post-03.jpg" />
-    <Content Include="Images\blog-post-01.jpg" />
-    <Content Include="Images\blog-post-02.jpg" />
-    <Content Include="Images\blog-post-03.jpg" />
-    <Content Include="Images\blog-widget-01.jpg" />
-    <Content Include="Images\blog-widget-02.jpg" />
-    <Content Include="Images\blog-widget-03.jpg" />
-    <Content Include="Images\category-box-01.jpg" />
-    <Content Include="Images\category-box-02.jpg" />
-    <Content Include="Images\category-box-03.jpg" />
-    <Content Include="Images\category-box-04.jpg" />
-    <Content Include="Images\category-box-05.jpg" />
-    <Content Include="Images\category-box-06.jpg" />
-    <Content Include="Images\dashboard-avatar.jpg" />
-    <Content Include="Images\happy-client-01.jpg" />
-    <Content Include="Images\happy-client-02.jpg" />
-    <Content Include="Images\happy-client-03.jpg" />
-    <Content Include="Images\listeo_bg3.jpg" />
-    <Content Include="Images\listing-item-01.jpg" />
-    <Content Include="Images\listing-item-02.jpg" />
-    <Content Include="Images\listing-item-03.jpg" />
-    <Content Include="Images\listing-item-04.jpg" />
-    <Content Include="Images\listing-item-05.jpg" />
-    <Content Include="Images\listing-item-06.jpg" />
     <Content Include="Images\loader.gif" />
+    <Content Include="Images\login-cover.jpg" />
     <Content Include="Images\logo-01.png" />
     <Content Include="Images\logo-02.png" />
     <Content Include="Images\logo-03.png" />
     <Content Include="Images\logo-04.png" />
     <Content Include="Images\logo-05.png" />
     <Content Include="Images\logo-06.png" />
-    <Content Include="Images\logo-07.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo2.png" />
-    <Content Include="Images\main-search-background-01.jpg" />
-    <Content Include="Images\main-search-video-poster.jpg" />
-    <Content Include="Images\main-search-video.mp4" />
-    <Content Include="Images\our-office.jpg" />
-    <Content Include="Images\plus-icon.svg" />
-    <Content Include="Images\popular-location-01.jpg" />
-    <Content Include="Images\popular-location-02.jpg" />
-    <Content Include="Images\popular-location-03.jpg" />
-    <Content Include="Images\popular-location-04.jpg" />
-    <Content Include="Images\popular-location-05.jpg" />
-    <Content Include="Images\review-image-01.jpg" />
-    <Content Include="Images\review-image-02.jpg" />
-    <Content Include="Images\review-image-03.jpg" />
-    <Content Include="Images\reviews-avatar.jpg" />
-    <Content Include="Images\single-listing-01.jpg" />
-    <Content Include="Images\single-listing-01a.jpg" />
-    <Content Include="Images\single-listing-02.jpg" />
-    <Content Include="Images\single-listing-02a.jpg" />
-    <Content Include="Images\single-listing-03.jpg" />
-    <Content Include="Images\single-listing-03a.jpg" />
-    <Content Include="Images\single-listing-04.jpg" />
-    <Content Include="Images\single-listing-04a.jpg" />
-    <Content Include="Images\single-listing-05a.jpg" />
-    <Content Include="Images\single-listing-05b.jpg" />
-    <Content Include="Images\single-listing-05c.jpg" />
-    <Content Include="Images\single-listing-05d.jpg" />
-    <Content Include="Images\slider-bg-01.jpg" />
-    <Content Include="Images\slider-bg-02.jpg" />
-    <Content Include="Images\user-avatar.jpg" />
-    <Content Include="Images\user-profile-avatar.jpg" />
     <Content Include="Scripts\chosen.min.js" />
     <Content Include="Scripts\counterup.min.js" />
     <Content Include="Scripts\custom.js" />
@@ -262,6 +206,7 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -314,6 +259,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bundle.config" />
     <None Include="packages.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <None Include="Web.Debug.config">
@@ -322,6 +268,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{abfc48b8-1c54-47ef-9b2d-fcf516ccb47a}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
