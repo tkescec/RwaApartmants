@@ -13,7 +13,7 @@ namespace Administrator
 {
     public class Global : HttpApplication
     {
-        private readonly IRepository _repository;
+        private readonly IRepositories _repository;
 
         public Global()
         {
@@ -22,7 +22,7 @@ namespace Administrator
 
         void Application_Start(object sender, EventArgs e)
         {
-            Application["database"] = _repository;
+            Application["repository"] = _repository;
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }

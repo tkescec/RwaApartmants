@@ -1,9 +1,12 @@
-﻿using System;
+﻿using DAL.Models;
+using DAL.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Utilities;
 
 namespace Administrator
 {
@@ -13,8 +16,9 @@ namespace Administrator
         {
             if (!IsPostBack)
             {
-                PanelForma.Visible = true;
-                PanelIspis.Visible = false;
+                FormPanel.Visible = true;
+                MessagePanel.Visible = false;
+                txtEmail.Focus();
             }
 
             if (Session["user"] != null)
@@ -27,20 +31,42 @@ namespace Administrator
         {
             if (IsValid)
             {
-                //var username = txtUsername.Text;
-                //var password = Cryptography.HashPassword(txtPassword.Text);
+                var email = txtEmail.Text;
+                var password = Crypto.HashPassword(txtPassword.Text);
 
-                //User user = ((IRepo)Application["database"]).AuthUser(username, password);
-                string user = null;
-
-                if (user == null)
+                try
                 {
-                    
-                    PanelForma.Visible = true;
-                    PanelIspis.Visible = true;
+                    User user = ((IRepositories)Application["repository"]).AuthRepository.AuthUser(email, password);
+                    SignIn(user);
+                }
+                catch (Exception)
+                {
+                    ShowMessagePanel("Došlo je do problema. Molimo kontaktirajte administratora stranice.");
+                }
 
-                    txtUsername.Text = "";
-                    txtPassword.Text = "";
+
+            }
+        }
+
+        private void SignIn(User user)
+        {
+            if (user == null)
+            {
+                ShowMessagePanel("Neispravna E-mail adresa i/ili zaporka.");
+            }
+            else
+            {
+                if (!user.EmailConfirmed)
+                {
+                    ShowMessagePanel("Niste potvrdili E-mail adresu. Potvrdite E-mail adresu kako bi mogli pristupiti sustavu!");
+                }
+                else if (user.DeletedAt != null)
+                {
+                    ShowMessagePanel("Korisnički račun je daktiviran!");
+                }
+                else if (user.Role != Roles.RoleType.Administrator.ToString())
+                {
+                    ShowMessagePanel("Nemate dopuštenje za pristup administracijskom sučelju!");
                 }
                 else
                 {
@@ -48,6 +74,16 @@ namespace Administrator
                     Response.Redirect("Dashboard.aspx");
                 }
             }
+
+            //txtEmail.Text = "";
+            txtPassword.Text = "";
+            txtPassword.Focus();
+        }
+
+        private void ShowMessagePanel(string message)
+        {
+            lblErrorLogin.Text = message;
+            MessagePanel.Visible = true;
         }
     }
 }

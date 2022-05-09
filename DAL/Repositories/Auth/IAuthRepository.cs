@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Repositories
+namespace DAL.Repositories.Auth
 {
-    public interface IRepository<T> where T : class
+    public interface IAuthRepository : IRepository<User>
     {
-        string CS { get; }
+        User AuthUser(string email, string password);
     }
 }

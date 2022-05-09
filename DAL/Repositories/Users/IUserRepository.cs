@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Repositories
+namespace DAL.Repositories.Users
 {
-    public interface IRepository<T> where T : class
+    public interface IUserRepository : IRepository<User>
     {
-        string CS { get; }
+
     }
 }

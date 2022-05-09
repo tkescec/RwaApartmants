@@ -24,13 +24,13 @@ namespace Administrator
         protected global::System.Web.UI.HtmlControls.HtmlForm loginForm;
 
         /// <summary>
-        /// PanelIspis control.
+        /// MessagePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelIspis;
+        protected global::System.Web.UI.WebControls.Panel MessagePanel;
 
         /// <summary>
         /// lblErrorLogin control.
@@ -42,31 +42,31 @@ namespace Administrator
         protected global::System.Web.UI.WebControls.Label lblErrorLogin;
 
         /// <summary>
-        /// PanelForma control.
+        /// FormPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelForma;
+        protected global::System.Web.UI.WebControls.Panel FormPanel;
 
         /// <summary>
-        /// lblUsername control.
+        /// lblEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUsername;
+        protected global::System.Web.UI.WebControls.Label lblEmail;
 
         /// <summary>
-        /// txtUsername control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsername;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
         /// RequiredFieldValidator1 control.

@@ -97,6 +97,9 @@
 /* ---------------------------------- */
 /* Forms Reset & Styles
 ------------------------------------- */
+html{
+    font-size: 100% !important;
+}
 input,
 input[type="text"],
 input[type="password"],
@@ -1108,14 +1111,14 @@ body #navigation.style-1 ul ul li {
         }
 
 /* Avatar */
-.user-name span img {
+.user-name div img {
     width: 100%;
     display: inline-block;
     border-radius: 50%;
     image-rendering: -webkit-optimize-contrast;
 }
 
-.user-name span {
+.user-name div {
     display: inline-block;
     width: 38px;
     height: 38px;
@@ -1172,7 +1175,7 @@ body #navigation.style-1 ul ul li {
     transform: translate3d(0,0,0);
 }
 
-.user-name span:after {
+.user-name div:after {
     position: absolute;
     content: "";
     height: 12px;
@@ -1187,26 +1190,26 @@ body #navigation.style-1 ul ul li {
 }
 
 /* User Menu Avatar Border */
-.user-name span img {
+.user-name div img {
     border: 3px solid #fff;
     box-shadow: 0 2px 3px rgba(0,0,0,0.1);
     box-sizing: content-box;
 }
 
-.user-name span {
+.user-name div {
     width: 35px;
     height: 35px;
     left: -28px;
     top: -8px;
 }
 
-    .user-name span:after {
+    .user-name div:after {
         bottom: -6px;
         right: -6px;
     }
 
 @media (max-width: 380px) {
-    .user-name span:after {
+    .user-name div:after {
         bottom: -3px;
         right: -6px;
     }
@@ -3995,7 +3998,7 @@ button.panel-cancel {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1100;
+    z-index: 1019;
     background-color: #fff;
 }
 

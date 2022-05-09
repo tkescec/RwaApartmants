@@ -22,9 +22,9 @@
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
                         <!-- PANEL PORUKA -->
-                        <asp:Panel ID="PanelIspis" runat="server" Visible="False">
+                        <asp:Panel ID="MessagePanel" runat="server" Visible="False">
                             <div class='notification error closeable'>
-                                <asp:Label ID="lblErrorLogin" meta:resourcekey="lblErrorLogin" runat="server" Text="Neispravno korisničko ime i/ili zaporka"></asp:Label>
+                                <asp:Label ID="lblErrorLogin" meta:resourcekey="lblErrorLogin" runat="server" Text=""></asp:Label>
                             </div>
                         </asp:Panel>
                     </div>
@@ -33,14 +33,14 @@
                 <!-- // -->
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
-                        <asp:Panel ID="PanelForma" runat="server" Visible="True">
+                        <asp:Panel ID="FormPanel" runat="server" Visible="True">
                             <!-- FORM -->
                             <fieldset>
                                 <legend class="legend-title margin-bottom-15" runat="server" meta:resourcekey="legendLogin">Prijava Administratora</legend>
                                 <div class="margin-bottom-15">
-                                    <asp:Label ID="lblUsername" meta:resourcekey="lblUsername" class="form-label" runat="server" Text="Korisničko ime"></asp:Label>
-                                    <asp:TextBox ID="txtUsername" class="input-text margin-bottom-0" runat="server"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" meta:resourcekey="rfvUsername" runat="server" ControlToValidate="txtUsername" Display="Dynamic" ForeColor="#FF9393">Niste upisali korisničko ime</asp:RequiredFieldValidator>
+                                    <asp:Label ID="lblEmail" meta:resourcekey="lblEmail" class="form-label" runat="server" Text="Email adresa"></asp:Label>
+                                    <asp:TextBox ID="txtEmail" class="input-text margin-bottom-0" runat="server"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" meta:resourcekey="rfvEmail" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ForeColor="#FF9393">Niste upisali email adresu</asp:RequiredFieldValidator>
                                 </div>
                                 <div class="margin-bottom-15">
                                     <asp:Label ID="lblPassword" meta:resourcekey="lblPassword" class="form-label" runat="server" Text="Zaporka"></asp:Label>

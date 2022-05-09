@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - Listeo Apartmants</title>
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
 
     <!-- Custom Head Elements -->
     <asp:ContentPlaceHolder ID="Head" runat="server"></asp:ContentPlaceHolder>
@@ -48,18 +48,20 @@
                                 <!-- User Menu -->
                                 <div class="user-menu">
                                     <div class="user-name">
-                                        <span>
-                                            <img src="images/dashboard-avatar.jpg" alt=""></span>My Account
+                                        <div>
+                                            <img src="images/blank_user.png" alt=""></div>
+                                        <asp:Label ID="lblUsername" runat="server" Text="Moj Račun"></asp:Label>
                                     </div>
                                     <ul>
-                                        <li><a href="dashboard.html"><i class="sl sl-icon-settings"></i>Dashboard</a></li>
-                                        <li><a href="dashboard-messages.html"><i class="sl sl-icon-envelope-open"></i>Messages</a></li>
-                                        <li><a href="dashboard-bookings.html"><i class="fa fa-calendar-check-o"></i>Bookings</a></li>
-                                        <li><a href="index.html"><i class="sl sl-icon-power"></i>Logout</a></li>
+                                        <li><a href="/Dashboard"><i class="sl sl-icon-settings"></i>Dashboard</a></li>
+                                        <li><a href="/Bookings"><i class="fa fa-calendar"></i>Rezervacije</a></li>
+                                        <li>
+                                            <asp:LinkButton ID="btnLogoutNavbar" runat="server" OnClick="BtnLogout_Click"><i class="sl sl-icon-power"></i>Odjava</asp:LinkButton>
+                                        </li>
                                     </ul>
                                 </div>
 
-                                <a href="dashboard-add-listing.html" class="button border with-icon">Add Listing <i class="sl sl-icon-plus"></i></a>
+                                <a href="dashboard-add-listing.html" class="button border with-icon">Dodaj Apartman <i class="sl sl-icon-plus"></i></a>
                             </div>
                             <!-- Header Widget / End -->
                         </div>
@@ -84,29 +86,37 @@
                 <div class="dashboard-nav">
                     <div class="dashboard-nav-inner">
 
-                        <ul data-submenu-title="Main">
-                            <li class="active"><a href="dashboard.html"><i class="sl sl-icon-settings"></i>Dashboard</a></li>
-                            <li><a href="dashboard-messages.html"><i class="sl sl-icon-envelope-open"></i>Messages <span class="nav-tag messages">2</span></a></li>
-                            <li><a href="dashboard-bookings.html"><i class="fa fa-calendar-check-o"></i>Bookings</a></li>
-                            <li><a href="dashboard-wallet.html"><i class="sl sl-icon-wallet"></i>Wallet</a></li>
+                        <ul data-submenu-title="Glavni">
+                            <li runat="server" id="Dashboard" visible="true">
+                                <a href="/Dashboard"><i class="sl sl-icon-settings"></i>Nadzorna Ploča</a>
+                            </li>
+
+                            <li runat="server" id="Bookings" visible="true">
+                                <a href="/Bookings"><i class="fa fa-calendar"></i>Rezervacije</a>
+
+                            </li>
                         </ul>
 
-                        <ul data-submenu-title="Listings">
-                            <li><a><i class="sl sl-icon-layers"></i>My Listings</a>
+                        <ul data-submenu-title="Podaci">
+                            <li><a><i class="sl sl-icon-home"></i>Moji Apartmani</a>
                                 <ul>
-                                    <li><a href="dashboard-my-listings.html">Active <span class="nav-tag green">6</span></a></li>
-                                    <li><a href="dashboard-my-listings.html">Pending <span class="nav-tag yellow">1</span></a></li>
-                                    <li><a href="dashboard-my-listings.html">Expired <span class="nav-tag red">2</span></a></li>
+                                    <li><a href="dashboard-my-listings.html">Svi Apratmani</a></li>
+                                    <li><a href="dashboard-my-listings.html">Dodaj Novi</a></li>
                                 </ul>
                             </li>
-                            <li><a href="dashboard-reviews.html"><i class="sl sl-icon-star"></i>Reviews</a></li>
-                            <li><a href="dashboard-bookmarks.html"><i class="sl sl-icon-heart"></i>Bookmarks</a></li>
-                            <li><a href="dashboard-add-listing.html"><i class="sl sl-icon-plus"></i>Add Listing</a></li>
+                            <li><a><i class="sl sl-icon-tag"></i>Tagovi</a>
+                                <ul>
+                                    <li><a href="dashboard-my-listings.html">Svi Tagovi</a></li>
+                                    <li><a href="dashboard-my-listings.html">Dodaj Novi</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="dashboard.html"><i class="sl sl-icon-people"></i>Korisnici</a></li>
                         </ul>
 
-                        <ul data-submenu-title="Account">
-                            <li><a href="dashboard-my-profile.html"><i class="sl sl-icon-user"></i>My Profile</a></li>
-                            <li><a href="index.html"><i class="sl sl-icon-power"></i>Logout</a></li>
+                        <ul data-submenu-title="Korisnički račun">
+                            <li>
+                                <asp:LinkButton ID="btnLogout" runat="server" OnClick="BtnLogout_Click"><i class="sl sl-icon-power"></i>Odjava</asp:LinkButton>
+                            </li>
                         </ul>
 
                     </div>
@@ -127,6 +137,7 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/App") %>
     </asp:PlaceHolder>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Custom Scripts -->
     <asp:ContentPlaceHolder ID="Script" runat="server"></asp:ContentPlaceHolder>

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Administrator
 {
-    public partial class About : Page
+    public partial class Bookings : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

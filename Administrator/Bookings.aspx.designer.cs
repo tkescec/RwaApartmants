@@ -11,7 +11,7 @@ namespace Administrator
 {
 
 
-    public partial class Contact
+    public partial class Bookings
     {
     }
 }

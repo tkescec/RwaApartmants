@@ -5,16 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Models;
+using DAL.Repositories.Auth;
+using DAL.Repositories.Users;
 
 namespace DAL.Repositories
 {
-    public class DbRepository : IRepository
+    public class DbRepository : IRepositories
     {
-        private static readonly string _CS = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
+        private static readonly string CS = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
 
-        public User AuthUser(string email, string password)
-        {
-            throw new NotImplementedException();
-        }
+        public IAuthRepository AuthRepository => new AuthRepository(CS);
+        public IUserRepository UserRepository => new UserRepository(CS);
+
     }
 }

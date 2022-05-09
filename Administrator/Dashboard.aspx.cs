@@ -11,10 +11,7 @@ namespace Administrator
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["user"] == null)
-            {
-                Response.Redirect("/");
-            }
+            
         }
     }
 }
