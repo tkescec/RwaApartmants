@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Listeo Apartmants</title>
+    <title><%: Page.Title %> - Listeo Apartmani</title>
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
 
@@ -49,7 +49,8 @@
                                 <div class="user-menu">
                                     <div class="user-name">
                                         <div>
-                                            <img src="images/blank_user.png" alt=""></div>
+                                            <img src="images/blank_user.png" alt="">
+                                        </div>
                                         <asp:Label ID="lblUsername" runat="server" Text="Moj Račun"></asp:Label>
                                     </div>
                                     <ul>
@@ -61,7 +62,7 @@
                                     </ul>
                                 </div>
 
-                                <a href="dashboard-add-listing.html" class="button border with-icon">Dodaj Apartman <i class="sl sl-icon-plus"></i></a>
+                                <a href="/AddApartment" class="button border with-icon">Dodaj Apartman <i class="sl sl-icon-plus"></i></a>
                             </div>
                             <!-- Header Widget / End -->
                         </div>
@@ -100,17 +101,27 @@
                         <ul data-submenu-title="Podaci">
                             <li><a><i class="sl sl-icon-home"></i>Moji Apartmani</a>
                                 <ul>
-                                    <li><a href="dashboard-my-listings.html">Svi Apratmani</a></li>
-                                    <li><a href="dashboard-my-listings.html">Dodaj Novi</a></li>
+                                    <li runat="server" id="Apartments" visible="true">
+                                        <a href="/Apartments">Svi Apratmani</a>
+                                    </li>
+                                    <li runat="server" id="AddApartment" visible="true">
+                                        <a href="/AddApartment">Dodaj Novi</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li><a><i class="sl sl-icon-tag"></i>Tagovi</a>
                                 <ul>
-                                    <li><a href="dashboard-my-listings.html">Svi Tagovi</a></li>
-                                    <li><a href="dashboard-my-listings.html">Dodaj Novi</a></li>
+                                    <li runat="server" id="Tags" visible="true">
+                                        <a href="/Tags">Svi Tagovi</a>
+                                    </li>
+                                    <li runat="server" id="AddTag" visible="true">
+                                        <a href="/AddTag">Dodaj Novi</a>
+                                    </li>
                                 </ul>
                             </li>
-                            <li><a href="dashboard.html"><i class="sl sl-icon-people"></i>Korisnici</a></li>
+                            <li runat="server" id="Users" visible="true">
+                                <a href="/Users"><i class="sl sl-icon-people"></i>Korisnici</a>
+                            </li>
                         </ul>
 
                         <ul data-submenu-title="Korisnički račun">
@@ -127,8 +138,16 @@
 	            ================================================== -->
                 <div class="dashboard-content">
                     <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+
+                    <div class="row">
+                        <!-- Copyrights -->
+                        <div class="col-md-12">
+                            <div class="copyrights">© 2019 Listeo. All Rights Reserved.</div>
+                        </div>
+                    </div>
                 </div>
                 <!-- Content / End -->
+
             </div>
             <!-- Dashboard / End -->
         </div>

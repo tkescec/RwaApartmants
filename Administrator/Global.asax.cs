@@ -22,7 +22,7 @@ namespace Administrator
 
         void Application_Start(object sender, EventArgs e)
         {
-            Application["repository"] = _repository;
+            Application["Repositories"] = _repository;
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }

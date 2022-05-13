@@ -38,5 +38,6 @@ namespace DAL.Repositories.Auth
                 DeletedAt = (DateTime?)(row.IsNull(nameof(User.DeletedAt)) ? null : row[nameof(User.DeletedAt)]),
             };
         }
+
     }
 }

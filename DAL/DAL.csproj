@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collection\Pagination.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Repositories\Auth\AuthRepository.cs" />
     <Compile Include="Repositories\Auth\IAuthRepository.cs" />

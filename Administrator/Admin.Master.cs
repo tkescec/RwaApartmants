@@ -57,7 +57,6 @@ namespace Administrator
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

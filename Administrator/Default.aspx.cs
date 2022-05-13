@@ -14,6 +14,7 @@ namespace Administrator
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 FormPanel.Visible = true;
@@ -36,7 +37,7 @@ namespace Administrator
 
                 try
                 {
-                    User user = ((IRepositories)Application["repository"]).AuthRepository.AuthUser(email, password);
+                    User user = ((IRepositories)Application["Repositories"]).AuthRepository.AuthUser(email, password);
                     SignIn(user);
                 }
                 catch (Exception)

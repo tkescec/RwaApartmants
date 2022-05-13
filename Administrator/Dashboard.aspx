@@ -3,9 +3,6 @@
 <asp:Content ID="HeadContent" ContentPlaceHolderID="Head" runat="server">
 </asp:Content>
 
-<asp:Content ID="ScriptContent" ContentPlaceHolderID="Script" runat="server">
-</asp:Content>
-
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Titlebar -->
     <div id="titlebar">
@@ -182,11 +179,8 @@
                 </ul>
             </div>
         </div>
-
-
-        <!-- Copyrights -->
-        <div class="col-md-12">
-            <div class="copyrights">© 2019 Listeo. All Rights Reserved.</div>
-        </div>
     </div>
+</asp:Content>
+
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="Script" runat="server">
 </asp:Content>

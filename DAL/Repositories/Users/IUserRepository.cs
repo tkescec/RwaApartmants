@@ -1,4 +1,5 @@
-﻿using DAL.Models;
+﻿using DAL.Collection;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace DAL.Repositories.Users
 {
     public interface IUserRepository : IRepository<User>
     {
-
+        Pagination<User> GetAllUsers(int iPageIndex, int iPageSize);
     }
 }
