@@ -6,10 +6,6 @@ using DAL.Models;
 using DAL.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Administrator
 {
@@ -18,7 +14,7 @@ namespace Administrator
         private const int PAGE_INDEX = 1;
         private const int PAGE_SIZE = 20;
 
-        private Pagination<User> _data;
+        private PaginationCollection<User> _data;
         private IList<User> _allUsers;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -35,7 +31,7 @@ namespace Administrator
             }
             catch (Exception)
             {
-                Alert.ShowAlert(Page, Alert.AlertType.Error, new SweetAlert
+                AlertService.ShowAlert(Page, AlertService.AlertType.Error, new SweetAlert
                 {
                     Title = "Greška!",
                     Text = "Došlo je do problema. Molimo kontaktirajte administratora stranice."
@@ -65,18 +61,9 @@ namespace Administrator
             }
         }
 
-        private void BuildPagination(Pagination<User> data)
+        private void BuildPagination(PaginationCollection<User> data)
         {
-            double dPageCount = (double)((decimal)data.TotalRecords / Convert.ToDecimal(PAGE_SIZE));
-            int iPageCount = (int)Math.Ceiling(dPageCount);
-            List<ListItem> lPages = new List<ListItem>();
-            if (iPageCount > 0)
-            {
-                for (int i = 1; i <= iPageCount; i++)
-                    lPages.Add(new ListItem(i.ToString(), i.ToString(), i != PAGE_INDEX));
-            }
-
-            Application["DataSource"] = lPages;
+            Application["PaginationPages"] = PaginationService.GetPaginationPages(data.TotalRecords, PAGE_INDEX, PAGE_SIZE);
         }
 
         private void BindData()

@@ -5,9 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Repositories.Users
 {
@@ -20,9 +17,9 @@ namespace DAL.Repositories.Users
             CS = cS;
         }
 
-        public Pagination<User> GetAllUsers(int iPageIndex, int iPageSize)
+        public PaginationCollection<User> GetAllUsers(int iPageIndex, int iPageSize)
         {
-            Pagination<User> pagination = new Pagination<User>
+            PaginationCollection<User> pagination = new PaginationCollection<User>
             {
                 PageIndex = iPageIndex,
                 PageSize = iPageSize,

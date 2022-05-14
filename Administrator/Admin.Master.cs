@@ -31,7 +31,7 @@ namespace Administrator
             }
             catch (Exception)
             {
-                Alert.ShowAlert(Page, Alert.AlertType.Error, new SweetAlert
+                AlertService.ShowAlert(Page, AlertService.AlertType.Error, new SweetAlert
                 {
                     Title = "Greška!",
                     Text = "Došlo je do problema. Molimo kontaktirajte administratora stranice."

@@ -1,12 +1,6 @@
 ﻿using Administrator.Events.Pagination;
-using DAL.Collection;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Web;
-using System.Web.Compilation;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Administrator.Controls
@@ -19,7 +13,7 @@ namespace Administrator.Controls
         {
             if (!IsPostBack)
             {
-                rptPagination.DataSource = (List<ListItem>)Application["DataSource"];
+                rptPagination.DataSource = (List<ListItem>)Application["PaginationPages"];
                 rptPagination.DataBind();
 
                 LinkButton firstBtn = (LinkButton)rptPagination.Items[0].FindControl("lnkPage");
@@ -29,7 +23,7 @@ namespace Administrator.Controls
 
         protected void BtnPage_Click(object sender, EventArgs e)
         {
-            ResetButtonsCSS();
+            ResetButtonsCss();
 
             LinkButton btn = (LinkButton)sender;
             int PageIndex = Convert.ToInt32(btn.CommandArgument);
@@ -42,7 +36,7 @@ namespace Administrator.Controls
 
         }
 
-        private void ResetButtonsCSS()
+        private void ResetButtonsCss()
         {
             foreach (RepeaterItem item in rptPagination.Items)
             {

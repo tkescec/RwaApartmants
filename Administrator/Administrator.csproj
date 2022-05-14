@@ -245,7 +245,8 @@
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
-    <Compile Include="Services\Alert.cs" />
+    <Compile Include="Services\AlertService.cs" />
+    <Compile Include="Services\PaginationService.cs" />
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
