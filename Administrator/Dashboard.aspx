@@ -30,8 +30,8 @@
         <div class="col-lg-3 col-md-6">
             <div class="dashboard-stat color-1">
                 <div class="dashboard-stat-content">
-                    <h4>6</h4>
-                    <span>Active Listings</span></div>
+                    <h4 id="ApartmentCount" runat="server"></h4>
+                    <span>Apartmana</span></div>
                 <div class="dashboard-stat-icon"><i class="im im-icon-Map2"></i></div>
             </div>
         </div>
@@ -40,8 +40,8 @@
         <div class="col-lg-3 col-md-6">
             <div class="dashboard-stat color-2">
                 <div class="dashboard-stat-content">
-                    <h4>726</h4>
-                    <span>Total Views</span></div>
+                    <h4 id="ReservationCount" runat="server"></h4>
+                    <span>Rezervacija</span></div>
                 <div class="dashboard-stat-icon"><i class="im im-icon-Line-Chart"></i></div>
             </div>
         </div>
@@ -51,9 +51,9 @@
         <div class="col-lg-3 col-md-6">
             <div class="dashboard-stat color-3">
                 <div class="dashboard-stat-content">
-                    <h4>95</h4>
-                    <span>Total Reviews</span></div>
-                <div class="dashboard-stat-icon"><i class="im im-icon-Add-UserStar"></i></div>
+                    <h4 id="ReviewCount" runat="server"></h4>
+                    <span>Recenzija</span></div>
+                <div class="dashboard-stat-icon"><i class="im im-icon-Heart"></i></div>
             </div>
         </div>
 
@@ -61,15 +61,15 @@
         <div class="col-lg-3 col-md-6">
             <div class="dashboard-stat color-4">
                 <div class="dashboard-stat-content">
-                    <h4>126</h4>
-                    <span>Times Bookmarked</span></div>
-                <div class="dashboard-stat-icon"><i class="im im-icon-Heart"></i></div>
+                    <h4 id="UserCount" runat="server"></h4>
+                    <span>Korisnika</span></div>
+                <div class="dashboard-stat-icon"><i class="im im-icon-Add-UserStar"></i></div>
             </div>
         </div>
     </div>
 
 
-    <div class="row">
+    <%--<div class="row">
 
         <!-- Recent Activity -->
         <div class="col-lg-6 col-md-12">
@@ -179,7 +179,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div>--%>
 </asp:Content>
 
 <asp:Content ID="ScriptContent" ContentPlaceHolderID="Script" runat="server">

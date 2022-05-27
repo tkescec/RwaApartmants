@@ -1,12 +1,7 @@
 ﻿using DAL.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using Utilities;
 using Administrator.Services;
 using Administrator.Models.ViewModels;
 
@@ -31,7 +26,7 @@ namespace Administrator
             }
             catch (Exception)
             {
-                AlertService.ShowAlert(Page, AlertService.AlertType.Error, new SweetAlert
+                AlertService.ShowAlert(Page, AlertService.AlertType.Error, new SweetAlertModel
                 {
                     Title = "Greška!",
                     Text = "Došlo je do problema. Molimo kontaktirajte administratora stranice."

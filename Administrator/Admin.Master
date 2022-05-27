@@ -88,11 +88,11 @@
                     <div class="dashboard-nav-inner">
 
                         <ul data-submenu-title="Glavni">
-                            <li runat="server" id="Dashboard" visible="true">
+                            <li runat="server" ID="Dashboard" visible="true">
                                 <a href="/Dashboard"><i class="sl sl-icon-settings"></i>Nadzorna Ploča</a>
                             </li>
 
-                            <li runat="server" id="Bookings" visible="true">
+                            <li runat="server" ID="Bookings" visible="true">
                                 <a href="/Bookings"><i class="fa fa-calendar"></i>Rezervacije</a>
 
                             </li>
@@ -101,25 +101,25 @@
                         <ul data-submenu-title="Podaci">
                             <li><a><i class="sl sl-icon-home"></i>Moji Apartmani</a>
                                 <ul>
-                                    <li runat="server" id="Apartments" visible="true">
+                                    <li runat="server" ID="Apartments" visible="true">
                                         <a href="/Apartments">Svi Apratmani</a>
                                     </li>
-                                    <li runat="server" id="AddApartment" visible="true">
+                                    <li runat="server" ID="AddApartment" visible="true">
                                         <a href="/AddApartment">Dodaj Novi</a>
                                     </li>
                                 </ul>
                             </li>
                             <li><a><i class="sl sl-icon-tag"></i>Tagovi</a>
                                 <ul>
-                                    <li runat="server" id="Tags" visible="true">
+                                    <li runat="server" ID="Tags" visible="true">
                                         <a href="/Tags">Svi Tagovi</a>
                                     </li>
-                                    <li runat="server" id="AddTag" visible="true">
+                                    <li runat="server" ID="AddTag" visible="true">
                                         <a href="/AddTag">Dodaj Novi</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li runat="server" id="Users" visible="true">
+                            <li runat="server" ID="Users" visible="true">
                                 <a href="/Users"><i class="sl sl-icon-people"></i>Korisnici</a>
                             </li>
                         </ul>

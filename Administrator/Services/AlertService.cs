@@ -14,7 +14,7 @@ namespace Administrator.Services
             Warning,
             Info
         }
-        public static void ShowAlert(Page page, AlertType type, SweetAlert sweetAlert)
+        public static void ShowAlert(Page page, AlertType type, SweetAlertModel sweetAlert)
         {
             if (page.Master.FindControl("Script") is ContentPlaceHolder control)
             {
@@ -27,7 +27,7 @@ namespace Administrator.Services
 
         }
 
-        private static string CreateAlert(AlertType type, SweetAlert sweetAlert)
+        private static string CreateAlert(AlertType type, SweetAlertModel sweetAlert)
         {
             StringBuilder sb = new StringBuilder();
 

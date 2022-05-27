@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Administrator.Models.ViewModels
 {
-    public class SweetAlert
+    public class SweetAlertModel
     {
         public string Title { get; set; }
         public string Text { get; set; }

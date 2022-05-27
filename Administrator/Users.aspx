@@ -24,18 +24,18 @@
                 <ul>
                     <asp:Repeater ID="rptUsers" runat="server">
                         <ItemTemplate>
-                            <li class=<%# (!(bool)Eval(nameof(DAL.Models.User.EmailConfirmed)) || Eval(nameof(DAL.Models.User.DeletedAt)) != null) ? "canceled-booking" : "approved-booking" %>>
+                            <li class=<%# (!(bool)((DAL.Models.User)Container.DataItem).EmailConfirmed || ((DAL.Models.User)Container.DataItem).DeletedAt != null) ? "canceled-booking" : "approved-booking" %>>
                                 <div class="list-box-listing bookings">
                                     <div class="list-box-listing-img">
                                         <img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&s=120" alt=""></div>
                                     <div class="list-box-listing-content">
                                         <div class="inner">
-                                            <h3><%# Eval(nameof(DAL.Models.User.Username)) %> <span class="booking-status"><%# (!(bool)Eval(nameof(DAL.Models.User.EmailConfirmed)) || Eval(nameof(DAL.Models.User.DeletedAt)) != null) ? "Neaktivan" : "Aktivan" %></span></h3>
+                                            <h3><%# ((DAL.Models.User)Container.DataItem).Username %> <span class="booking-status"><%# (!(bool)Eval(nameof(DAL.Models.User.EmailConfirmed)) || Eval(nameof(DAL.Models.User.DeletedAt)) != null) ? "Neaktivan" : "Aktivan" %></span></h3>
 
                                             <div class="inner-booking-list">
                                                 <h5>Korisnička uloga:</h5>
                                                 <ul class="booking-list">
-                                                    <li class="highlighted"><%# Eval(nameof(DAL.Models.User.Role)).ToString() != "" ? Eval(nameof(DAL.Models.User.Role)) : "Nema uloge" %></li>
+                                                    <li class="highlighted"><%# ((DAL.Models.User)Container.DataItem).Role.ToString() != "" ? ((DAL.Models.User)Container.DataItem).Role : "Nema uloge" %></li>
                                                 </ul>
                                             </div>
 
@@ -63,7 +63,7 @@
         </div>
     </div>
 
-    <uc:Pagination runat="server" id="Pagination" />
+    <uc:Pagination runat="server" ID="Pagination" />
 
 </asp:Content>
 
