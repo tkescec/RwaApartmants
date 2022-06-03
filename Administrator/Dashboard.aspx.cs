@@ -36,14 +36,15 @@ namespace Administrator
         {
             try
             {
-                var allUsers = ((IRepositories)Application["Repositories"]).UserRepository.GetAllUsers(0, 0);
+                var users = ((IRepositories)Application["Repositories"]).UserRepository.GetAllUsers(0, 0);
+                var apartments = ((IRepositories)Application["Repositories"]).ApartmentRepository.GetAllApartments(0, 0);
 
                 DashboardData = new DashboardModel
                 {
-                    Apartmants = 0,
+                    Apartments = apartments.TotalRecords,
                     Reservations = 0,
                     Reviewes = 0,
-                    Users = allUsers.TotalRecords
+                    Users = users.TotalRecords
 
                 };
 
@@ -57,7 +58,7 @@ namespace Administrator
 
         private void BindData()
         {
-            ApartmentCount.InnerText = DashboardData.Apartmants.ToString();
+            ApartmentCount.InnerText = DashboardData.Apartments.ToString();
             ReservationCount.InnerText = DashboardData.Reservations.ToString();
             ReviewCount.InnerText = DashboardData.Reviewes.ToString();
             UserCount.InnerText = DashboardData.Users.ToString();

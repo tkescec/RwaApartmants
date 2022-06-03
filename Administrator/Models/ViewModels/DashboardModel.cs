@@ -7,7 +7,7 @@ namespace Administrator.Models.ViewModels
 {
     public class DashboardModel
     {
-        public int Apartmants { get; set; }
+        public int Apartments { get; set; }
         public int Reservations { get; set; }
         public int Reviewes { get; set; }
         public int Users { get; set; }

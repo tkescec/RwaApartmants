@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using DAL.Repositories.Apartments;
 using DAL.Repositories.Auth;
 using DAL.Repositories.Users;
 
@@ -10,6 +11,6 @@ namespace DAL.Repositories
 
         public IAuthRepository AuthRepository => new AuthRepository(CS);
         public IUserRepository UserRepository => new UserRepository(CS);
-
+        public IApartmentRepository ApartmentRepository => new ApartmentRepository(CS);
     }
 }

@@ -1,4 +1,5 @@
-﻿using DAL.Repositories.Auth;
+﻿using DAL.Repositories.Apartments;
+using DAL.Repositories.Auth;
 using DAL.Repositories.Users;
 
 namespace DAL.Repositories
@@ -7,5 +8,6 @@ namespace DAL.Repositories
     {
         IAuthRepository AuthRepository { get; }
         IUserRepository UserRepository { get; }
+        IApartmentRepository ApartmentRepository { get; }
     }
 }
