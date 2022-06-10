@@ -1,5 +1,7 @@
 ﻿using DAL.Repositories.Apartments;
 using DAL.Repositories.Auth;
+using DAL.Repositories.Cities;
+using DAL.Repositories.Tags;
 using DAL.Repositories.Users;
 
 namespace DAL.Repositories
@@ -9,5 +11,7 @@ namespace DAL.Repositories
         IAuthRepository AuthRepository { get; }
         IUserRepository UserRepository { get; }
         IApartmentRepository ApartmentRepository { get; }
+        ICityRepository CityRepository { get; }
+        ITagRepository TagRepository { get; }
     }
 }

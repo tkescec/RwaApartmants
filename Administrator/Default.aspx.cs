@@ -1,11 +1,12 @@
-﻿using DAL.Models;
+﻿using Administrator.Views.Shared;
+using DAL.Models;
 using DAL.Repositories;
 using System;
 using Utilities;
 
 namespace Administrator
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : MainPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,7 +33,7 @@ namespace Administrator
 
                 try
                 {
-                    User user = ((IRepositories)Application["Repositories"]).AuthRepository.AuthUser(email, password);
+                    User user = Repositories.AuthRepository.AuthUser(email, password);
                     SignIn(user);
                 }
                 catch (Exception)

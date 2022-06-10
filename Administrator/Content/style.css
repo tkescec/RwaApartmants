@@ -14677,7 +14677,7 @@ a.close-list-item {
         display: none;
     }
 
-    .bookings .list-box-listing-img {
+    .bookings:not(.apartments) .list-box-listing-img {
         max-width: 70px;
         max-height: 70px;
         border-radius: 50%;
@@ -21938,6 +21938,13 @@ div.layout-style {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.empty-repeater{
+    display:block;
+    text-align:center;
+    padding: 10px;
+    font-weight:600;
 }
 
 

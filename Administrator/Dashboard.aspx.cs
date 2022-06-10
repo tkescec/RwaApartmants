@@ -1,5 +1,8 @@
 ﻿using Administrator.Models.ViewModels;
 using Administrator.Services;
+using Administrator.Views.Shared;
+using DAL.Collection;
+using DAL.Models;
 using DAL.Repositories;
 using System;
 using System.Collections.Generic;
@@ -10,7 +13,7 @@ using System.Web.UI.WebControls;
 
 namespace Administrator
 {
-    public partial class Dashboard : System.Web.UI.Page
+    public partial class Dashboard : MainPage
     {
         public DashboardModel DashboardData { get; set; }
         protected void Page_Load(object sender, EventArgs e)
@@ -19,7 +22,7 @@ namespace Administrator
             {
                 if (!IsPostBack)
                 {
-                    GetData();
+                    GetDashboardData();
                 }
             }
             catch (Exception)
@@ -32,12 +35,12 @@ namespace Administrator
             }
         }
 
-        private void GetData()
+        private void GetDashboardData()
         {
             try
             {
-                var users = ((IRepositories)Application["Repositories"]).UserRepository.GetAllUsers(0, 0);
-                var apartments = ((IRepositories)Application["Repositories"]).ApartmentRepository.GetAllApartments(0, 0);
+                PaginationCollection<User> users = Repositories.UserRepository.GetUsers();
+                PaginationCollection<Apartment> apartments = Repositories.ApartmentRepository.GetApartments();
 
                 DashboardData = new DashboardModel
                 {

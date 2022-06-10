@@ -62,7 +62,13 @@ namespace Administrator
             {
                 string url = Request.Url.AbsolutePath.Remove(0, 1);
                 HtmlGenericControl navItem = (HtmlGenericControl)FindControl(url);
-                navItem.Attributes.Add("class", "active");
+
+
+                if (navItem != null)
+                {
+                    navItem.Attributes.Add("class", "active");
+                }
+                
             }
             catch (Exception ex)
             {

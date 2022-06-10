@@ -99,7 +99,7 @@
                         </ul>
 
                         <ul data-submenu-title="Podaci">
-                            <li><a><i class="sl sl-icon-home"></i>Moji Apartmani</a>
+                            <li ><a><i class="sl sl-icon-home"></i>Moji Apartmani</a>
                                 <ul>
                                     <li runat="server" ID="Apartments" visible="true">
                                         <a href="/Apartments">Svi Apratmani</a>

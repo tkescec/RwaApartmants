@@ -1,6 +1,7 @@
 ﻿using Administrator.Events.Pagination;
 using Administrator.Models.ViewModels;
 using Administrator.Services;
+using Administrator.Views.Shared;
 using DAL.Collection;
 using DAL.Models;
 using DAL.Repositories;
@@ -9,11 +10,8 @@ using System.Collections.Generic;
 
 namespace Administrator
 {
-    public partial class Users : System.Web.UI.Page
+    public partial class Users : MainPage
     {
-        private const int PAGE_INDEX = 1;
-        private const int PAGE_SIZE = 20;
-
         private PaginationCollection<User> _data;
         private IList<User> _allUsers;
 
@@ -49,29 +47,11 @@ namespace Administrator
         {
             try
             {
-                _data = ((IRepositories)Application["Repositories"]).UserRepository.GetAllUsers(pIndex, pSize);
+                _data = Repositories.UserRepository.GetUsers(pIndex, pSize);
                 _allUsers = _data.Collection;
 
-                BindData();
+                BindData(rptUsers, _allUsers);
 
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        private void BuildPagination(PaginationCollection<User> data)
-        {
-            Application["PaginationPages"] = PaginationService.GetPaginationPages(data.TotalRecords, PAGE_INDEX, PAGE_SIZE);
-        }
-
-        private void BindData()
-        {
-            try
-            {
-                rptUsers.DataSource = _allUsers;
-                rptUsers.DataBind();
             }
             catch (Exception ex)
             {

@@ -11,44 +11,26 @@ namespace Administrator
 {
 
 
-    public partial class Apartments
+    public partial class Tags
     {
 
         /// <summary>
-        /// filterByStatus control.
+        /// DeleteAllTags control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList filterByStatus;
+        protected global::System.Web.UI.WebControls.LinkButton DeleteAllTags;
 
         /// <summary>
-        /// filterByCity control.
+        /// rptTags control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList filterByCity;
-
-        /// <summary>
-        /// sortBy control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList sortBy;
-
-        /// <summary>
-        /// rptApartments control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptApartments;
+        protected global::System.Web.UI.WebControls.Repeater rptTags;
 
         /// <summary>
         /// Pagination control.
