@@ -9,7 +9,7 @@ namespace Administrator.Models.ViewModels
     {
         public int Apartments { get; set; }
         public int Reservations { get; set; }
-        public int Reviewes { get; set; }
+        public int Reviews { get; set; }
         public int Users { get; set; }
     }
 }

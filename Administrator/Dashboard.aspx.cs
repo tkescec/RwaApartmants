@@ -39,14 +39,15 @@ namespace Administrator
         {
             try
             {
-                PaginationCollection<User> users = Repositories.UserRepository.GetUsers();
                 PaginationCollection<Apartment> apartments = Repositories.ApartmentRepository.GetApartments();
+                PaginationCollection<Review> reviews = Repositories.ReviewRepository.GetReviews(1,10,1);
+                PaginationCollection<User> users = Repositories.UserRepository.GetUsers();
 
                 DashboardData = new DashboardModel
                 {
                     Apartments = apartments.TotalRecords,
                     Reservations = 0,
-                    Reviewes = 0,
+                    Reviews = reviews.TotalRecords,
                     Users = users.TotalRecords
 
                 };
@@ -63,7 +64,7 @@ namespace Administrator
         {
             ApartmentCount.InnerText = DashboardData.Apartments.ToString();
             ReservationCount.InnerText = DashboardData.Reservations.ToString();
-            ReviewCount.InnerText = DashboardData.Reviewes.ToString();
+            ReviewCount.InnerText = DashboardData.Reviews.ToString();
             UserCount.InnerText = DashboardData.Users.ToString();
         }
     }

@@ -50,6 +50,7 @@
     <Compile Include="Models\Apartment.cs" />
     <Compile Include="Models\ApartmentStatus.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Repositories\Apartments\ApartmentRepository.cs" />
@@ -61,6 +62,8 @@
     <Compile Include="Repositories\DbRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IRepositories.cs" />
+    <Compile Include="Repositories\Reviews\IReviewRepository.cs" />
+    <Compile Include="Repositories\Reviews\ReviewRepository.cs" />
     <Compile Include="Repositories\Tags\ITagRepository.cs" />
     <Compile Include="Repositories\Tags\TagRepository.cs" />
     <Compile Include="Repositories\Users\IUserRepository.cs" />
