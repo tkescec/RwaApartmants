@@ -40,7 +40,7 @@ namespace Administrator
             try
             {
                 PaginationCollection<Apartment> apartments = Repositories.ApartmentRepository.GetApartments();
-                PaginationCollection<Review> reviews = Repositories.ReviewRepository.GetReviews(1,10,1);
+                PaginationCollection<Review> reviews = Repositories.ReviewRepository.GetReviews();
                 PaginationCollection<User> users = Repositories.UserRepository.GetUsers();
 
                 DashboardData = new DashboardModel
