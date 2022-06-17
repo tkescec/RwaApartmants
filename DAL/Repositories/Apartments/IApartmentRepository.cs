@@ -1,5 +1,6 @@
 ﻿using DAL.Collection;
 using DAL.Models;
+using DAL.Models.ViewModels;
 using System.Collections.Generic;
 
 namespace DAL.Repositories.Apartments
@@ -10,5 +11,10 @@ namespace DAL.Repositories.Apartments
         PaginationCollection<Apartment> GetApartments(int iPageIndex, int iPageSize);
         PaginationCollection<Apartment> GetApartments(int iPageIndex, int iPageSize, int iCityFilter, int iStatusFilter, string iSortFilter);
         IList<ApartmentStatus> GetApartmentStatuses();
+        IList<ApartmentOwner> GetApartmentOwners();
+        bool DeleteApartments(int apartmentId);
+        bool AddApartment(ApartmentViewModel apartment);
+        bool AddApartmentTags(int? apartmentId, IList<int> apartmentTags);
+        bool AddApartmentPictures(int? apartmentId, IList<ApartmentPictureViewModel> apartmentPictures);
     }
 }

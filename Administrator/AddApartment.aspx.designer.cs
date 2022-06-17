@@ -11,133 +11,169 @@ namespace Administrator
 {
 
 
-    public partial class SiteMaster
+    public partial class AddApartment
     {
 
         /// <summary>
-        /// Head control.
+        /// ddlOwner control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder Head;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOwner;
 
         /// <summary>
-        /// lblUsername control.
+        /// rfvOwner control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUsername;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvOwner;
 
         /// <summary>
-        /// btnLogoutNavbar control.
+        /// txtApartmentName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnLogoutNavbar;
+        protected global::System.Web.UI.WebControls.TextBox txtApartmentName;
 
         /// <summary>
-        /// Dashboard control.
+        /// rfvApartmentName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Dashboard;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvApartmentName;
 
         /// <summary>
-        /// Bookings control.
+        /// txtApartmentNameEng control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Bookings;
+        protected global::System.Web.UI.WebControls.TextBox txtApartmentNameEng;
 
         /// <summary>
-        /// Apartments control.
+        /// rfvApartmentNameEng control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Apartments;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvApartmentNameEng;
 
         /// <summary>
-        /// AddApartment control.
+        /// ddlApartmentCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddApartment;
+        protected global::System.Web.UI.WebControls.DropDownList ddlApartmentCity;
 
         /// <summary>
-        /// Tags control.
+        /// rfvCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Tags;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCity;
 
         /// <summary>
-        /// AddTag control.
+        /// txtApartmentAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddTag;
+        protected global::System.Web.UI.WebControls.TextBox txtApartmentAddress;
 
         /// <summary>
-        /// Users control.
+        /// fileApartmentImages control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Users;
+        protected global::System.Web.UI.WebControls.FileUpload fileApartmentImages;
 
         /// <summary>
-        /// btnLogout control.
+        /// txtApartmentRooms control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnLogout;
+        protected global::System.Web.UI.WebControls.TextBox txtApartmentRooms;
 
         /// <summary>
-        /// MainContent control.
+        /// txtApartmentAdults control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.TextBox txtApartmentAdults;
 
         /// <summary>
-        /// YearLabel control.
+        /// txtApartmentChilds control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label YearLabel;
+        protected global::System.Web.UI.WebControls.TextBox txtApartmentChilds;
 
         /// <summary>
-        /// Script control.
+        /// txtApartmentBeachDistance control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder Script;
+        protected global::System.Web.UI.WebControls.TextBox txtApartmentBeachDistance;
+
+        /// <summary>
+        /// cblApartmentTags control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList cblApartmentTags;
+
+        /// <summary>
+        /// txtApartmentPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtApartmentPrice;
+
+        /// <summary>
+        /// rfvApartmentPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvApartmentPrice;
+
+        /// <summary>
+        /// btnAddNewApartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnAddNewApartment;
     }
 }

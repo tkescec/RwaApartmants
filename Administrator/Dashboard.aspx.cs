@@ -40,13 +40,14 @@ namespace Administrator
             try
             {
                 PaginationCollection<Apartment> apartments = Repositories.ApartmentRepository.GetApartments();
+                PaginationCollection<Reservation> reservations = Repositories.ReservationRespository.GetReservations();
                 PaginationCollection<Review> reviews = Repositories.ReviewRepository.GetReviews();
                 PaginationCollection<User> users = Repositories.UserRepository.GetUsers();
 
                 DashboardData = new DashboardModel
                 {
                     Apartments = apartments.TotalRecords,
-                    Reservations = 0,
+                    Reservations = reservations.TotalRecords,
                     Reviews = reviews.TotalRecords,
                     Users = users.TotalRecords
 

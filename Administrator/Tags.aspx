@@ -25,7 +25,7 @@
                     <!-- Filter by status -->
                     <div class="sort-by" style="margin-right: 10px">
                         <div class="sort-by-select">
-                            <asp:LinkButton ID="DeleteAllTags" runat="server" CssClass="button gray reject margin-top-5" OnClick="DeleteAllTags_Click" OnClientClick="return confirm('Da li si siguran da želiš obrisati sve ne aktive tagove?');">Izbriši sve ne aktivne tagove</asp:LinkButton>
+                            <asp:LinkButton ID="DeleteAllTags" runat="server" CssClass="button gray reject margin-top-5" OnClick="DeleteAllTags_Click" OnClientClick="return confirm('Da li si siguran da želiš obrisati sve ne aktive tagove?');">Izbriši sve ne pridružene tagove</asp:LinkButton>
                         </div>
                     </div>
                 </div>

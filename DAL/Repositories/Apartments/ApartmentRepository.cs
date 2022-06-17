@@ -1,5 +1,6 @@
 ﻿using DAL.Collection;
 using DAL.Models;
+using DAL.Models.ViewModels;
 using Microsoft.ApplicationBlocks.Data;
 using System;
 using System.Collections.Generic;
@@ -168,13 +169,13 @@ namespace DAL.Repositories.Apartments
 
         public IList<ApartmentStatus> GetApartmentStatuses()
         {
-            List<ApartmentStatus> cities = new List<ApartmentStatus>();
+            List<ApartmentStatus> apartmentStatuses = new List<ApartmentStatus>();
 
             var tblUsers = SqlHelper.ExecuteDataset(CS, CommandType.StoredProcedure, nameof(GetApartmentStatuses)).Tables[0];
 
             foreach (DataRow row in tblUsers.Rows)
             {
-                cities.Add(
+                apartmentStatuses.Add(
                     new ApartmentStatus
                     {
                         StatusID = (int)row[nameof(ApartmentStatus.StatusID)],
@@ -183,7 +184,237 @@ namespace DAL.Repositories.Apartments
                 );
             }
 
-            return cities;
+            return apartmentStatuses;
+        }
+
+        public IList<ApartmentOwner> GetApartmentOwners()
+        {
+            List<ApartmentOwner> apartmentOwners = new List<ApartmentOwner>();
+
+            var tblUsers = SqlHelper.ExecuteDataset(CS, CommandType.StoredProcedure, nameof(GetApartmentOwners)).Tables[0];
+
+            foreach (DataRow row in tblUsers.Rows)
+            {
+                apartmentOwners.Add(
+                    new ApartmentOwner
+                    {
+                        OwnerID = (int)row[nameof(ApartmentOwner.OwnerID)],
+                        Name = row[nameof(ApartmentOwner.Name)].ToString()
+                    }
+                );
+            }
+
+            return apartmentOwners;
+        }
+
+        public bool DeleteApartments(int apartmentId)
+        {
+            SqlParameter[] spParameter = new SqlParameter[1];
+
+            spParameter[0] = new SqlParameter("@ApartmentId", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Input,
+                Value = apartmentId
+            };
+
+            // TODO provejriti rezultat i vratiti true or false
+            SqlHelper.ExecuteDataset(CS, CommandType.StoredProcedure, nameof(DeleteApartments), spParameter);
+
+            return true;
+        }
+
+        public bool AddApartment(ApartmentViewModel apartment)
+        {
+            if (apartment == null)
+            {
+                return false;
+            }
+
+            int? apartmentId = null;
+            SqlParameter[] spParameter = new SqlParameter[15];
+
+            spParameter[0] = new SqlParameter("@Guid", SqlDbType.UniqueIdentifier)
+            {
+                Direction = ParameterDirection.Input,
+                Value = apartment.GUID
+            };
+
+            spParameter[1] = new SqlParameter("@CreatedAt", SqlDbType.DateTime2)
+            {
+                Direction = ParameterDirection.Input,
+                Value = apartment.CreatedAt
+            };
+
+            spParameter[2] = new SqlParameter("@Name", SqlDbType.NVarChar)
+            {
+                Direction = ParameterDirection.Input,
+                Value = apartment.Name
+            };
+
+            spParameter[3] = new SqlParameter("@NameEng", SqlDbType.NVarChar)
+            {
+                Direction = ParameterDirection.Input,
+                Value = apartment.NameEng
+            };
+
+            spParameter[4] = new SqlParameter("@OwnerId", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Input,
+                Value = apartment.OwnerId
+            };
+
+            spParameter[5] = new SqlParameter("@TypeId", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Input,
+                Value = apartment.TypeId
+            };
+
+            spParameter[6] = new SqlParameter("@StatusId", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Input,
+                Value = apartment.StatusId
+            };
+
+            spParameter[7] = new SqlParameter("@Price", SqlDbType.Money)
+            {
+                Direction = ParameterDirection.Input,
+                Value = apartment.Price
+            };
+
+            spParameter[8] = new SqlParameter("@CityId", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Input,
+                Value = apartment.CityId
+            };
+
+            spParameter[9] = new SqlParameter("@Address", SqlDbType.NVarChar)
+            {
+                Direction = ParameterDirection.Input,
+                Value = apartment.Address
+            };
+
+            spParameter[10] = new SqlParameter("@MaxAdults", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Input,
+                Value = apartment.MaxAdults
+            };
+
+            spParameter[11] = new SqlParameter("@MaxChildren", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Input,
+                Value = apartment.MaxChildren
+            };
+
+            spParameter[12] = new SqlParameter("@TotalRooms", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Input,
+                Value = apartment.TotalRooms
+            };
+
+            spParameter[13] = new SqlParameter("@BeachDistance", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Input,
+                Value = apartment.BeachDistance
+            };
+
+            spParameter[14] = new SqlParameter("@ApartmentId", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Output,
+                DbType = DbType.Int32
+            };
+
+            SqlHelper.ExecuteDataset(CS, CommandType.StoredProcedure, nameof(AddApartment), spParameter);
+
+            apartmentId = Convert.ToInt32(spParameter[14].Value);
+
+            if (apartmentId != null)
+            {
+
+                AddApartmentTags(apartmentId, apartment.Tags);
+                AddApartmentPictures(apartmentId, apartment.Pictures);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool AddApartmentTags(int? apartmentId, IList<int> apartmentTags)
+        {
+            foreach (int tagId in apartmentTags)
+            {
+                SqlParameter[] spParameter = new SqlParameter[2];
+
+                spParameter[0] = new SqlParameter("@ApartmentId", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = apartmentId
+                };
+
+                spParameter[1] = new SqlParameter("@TagId", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = tagId
+                };
+
+                SqlHelper.ExecuteDataset(CS, CommandType.StoredProcedure, nameof(AddApartmentTags), spParameter);
+            }
+
+            return true;
+        }
+
+        public bool AddApartmentPictures(int? apartmentId, IList<ApartmentPictureViewModel> apartmentPictures)
+        {
+            foreach (ApartmentPictureViewModel apartmentPicture in apartmentPictures)
+            {
+                SqlParameter[] spParameter = new SqlParameter[7];
+
+                spParameter[0] = new SqlParameter("@Guid", SqlDbType.UniqueIdentifier)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = apartmentPicture.GUID
+                };
+
+                spParameter[1] = new SqlParameter("@CreatedAt", SqlDbType.DateTime2)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = apartmentPicture.CreatedAt
+                };
+
+                spParameter[2] = new SqlParameter("@ApartmentId", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = apartmentId
+                };
+
+                spParameter[3] = new SqlParameter("@Path", SqlDbType.NVarChar)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = apartmentPicture.Path
+                };
+
+                spParameter[4] = new SqlParameter("@Base64Content", SqlDbType.NVarChar)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = apartmentPicture.Base64Content
+                };
+
+                spParameter[5] = new SqlParameter("@Name", SqlDbType.NVarChar)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = apartmentPicture.Name
+                };
+
+                spParameter[6] = new SqlParameter("@IsRepresentative", SqlDbType.Bit)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = apartmentPicture.IsRepresentative
+                };
+
+                SqlHelper.ExecuteDataset(CS, CommandType.StoredProcedure, nameof(AddApartmentPictures), spParameter);
+            }
+
+            return true;
         }
 
         #region Private Methods
@@ -241,14 +472,14 @@ namespace DAL.Repositories.Apartments
                     return "Price";
             }
         }
-        private string GetFeaturedImage(string base64)
+        private string GetFeaturedImage(string path)
         {
-            if (base64 == "")
+            if (path == "")
             {
                 return ImagesCollection.NO_IMAGE;
             }
 
-            return base64;
+            return System.IO.Path.Combine("~/Images/", path);
         }
         #endregion
     }

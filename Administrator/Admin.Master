@@ -142,7 +142,7 @@
                     <div class="row">
                         <!-- Copyrights -->
                         <div class="col-md-12">
-                            <div class="copyrights">© 2019 Listeo. All Rights Reserved.</div>
+                            <div class="copyrights">© <asp:Label ID="YearLabel" runat="server" /> Listeo. All Rights Reserved.</div>
                         </div>
                     </div>
                 </div>
@@ -153,9 +153,11 @@
         </div>
         <!-- Wrapper / End -->
     </form>
+
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/App") %>
     </asp:PlaceHolder>
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Custom Scripts -->

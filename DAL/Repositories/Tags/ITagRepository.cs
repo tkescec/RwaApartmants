@@ -1,5 +1,6 @@
 ﻿using DAL.Collection;
 using DAL.Models;
+using DAL.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace DAL.Repositories.Tags
         PaginationCollection<Tag> GetTags();
         PaginationCollection<Tag> GetTags(int iPageIndex, int iPageSize);
         bool DeleteTags(int? tagId);
+        IList<TagType> GetTagTypes();
+        bool AddTag(TagViewModel tag);
     }
 }

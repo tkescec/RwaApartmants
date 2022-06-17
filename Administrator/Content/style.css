@@ -97,9 +97,10 @@
 /* ---------------------------------- */
 /* Forms Reset & Styles
 ------------------------------------- */
-html{
+html {
     font-size: 100% !important;
 }
+
 input,
 input[type="text"],
 input[type="password"],
@@ -14632,6 +14633,10 @@ a.close-list-item {
 }
 
 /* Image */
+.apartments .list-box-listing-img {
+    max-width: 250px;
+}
+
 .list-box-listing-img {
     flex: 1;
     max-width: 150px;
@@ -15608,7 +15613,7 @@ input[type="time"]::-webkit-clear-button {
     width: 100%;
     margin-bottom: 5px;
 }
-
+    .fm-input,
     .pricing-list-item td .fm-input,
     .pricing-list-item td .fm-move,
     .pricing-list-item td .fm-close {
@@ -21477,6 +21482,7 @@ h4 span.headline-detail {
         height: auto;
     }
 
+    .apartments .list-box-listing-img,
     .list-box-listing-img {
         max-width: 100%;
     }
@@ -21921,30 +21927,137 @@ div.layout-style {
     bottom: 0;
 }
 
-.login-cover .login-cover-bg {
-    background: linear-gradient(to bottom,rgba(0,0,0,.45) 0,rgba(0,0,0,.9));
-}
+    .login-cover .login-cover-bg {
+        background: linear-gradient(to bottom,rgba(0,0,0,.45) 0,rgba(0,0,0,.9));
+    }
+
     .login-cover .login-cover-img {
         transition: background .2s ease;
         background: url('../Images/login-cover.jpg');
     }
 
-.login-cover .login-cover-bg, .login-cover .login-cover-img {
-    position: fixed;
+    .login-cover .login-cover-bg, .login-cover .login-cover-img {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+.empty-repeater {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    font-weight: 600;
+}
+
+/* BEGIN DRAG AND DROP IMAGES*/
+.file-input-container input[type=file] {
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    outline: none;
+    height: 100%;
+    opacity: 0;
+    z-index: 10;
+    cursor: pointer;
+    background: transparent;
 }
 
-.empty-repeater{
-    display:block;
-    text-align:center;
-    padding: 10px;
-    font-weight:600;
+.file-input-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    outline: none;
+    height: 200px;
+    border: 2px dashed #DFE3E8;
+    border-radius: 8px;
+    background-color: #F9FAFB;
+    transition: all .2s linear;
+    position: relative;
+}
+.file-input-container:hover {
+    border-color: #59b02c66
 }
 
+div.file-input {
+    border-radius: 8px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    outline: none;
+    height: 200px;
+    border: none;
+    background-color: transparent;
+    transition: all .2s linear;
+    position: relative;
+    cursor: pointer;
+    z-index: 10;
+}
 
+div.file-input:hover {
+    background: #59b02c22;
+}
+
+div.file-input:hover .label-input,
+div.file-input:hover .label-input span{
+    color: #59b02c !important;
+}
+
+.input-hover {
+    /*background-color: #DFE3E8 !important;
+    border: 2px dashed #637381 !important;*/
+}
+
+div.file-input .label-input {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #919EAB;
+    font-weight: normal;
+    font-size: 16px;
+    z-index: 5;
+}
+
+div.file-input .label-input span {
+    font-size: 16px;
+}
+
+div.file-input .label-input i {
+    font-size: 36px;
+}
+
+.images-preview-container {
+    margin-top: 25px;
+}
+
+.images-preview-container img {
+    width: 100%;
+    max-width: 300px;
+    margin: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .images-preview-container img {
+        max-width: 100%;
+    }
+}
+
+/* END DRAG AND DROP IMAGES*/
+.checkboxes ul{
+    margin:0;
+    padding:0;
+}
+.checkboxes ul li {
+    list-style: none;
+    display: inline-block;
+}

@@ -59,7 +59,7 @@ namespace Administrator
                 AlertService.ShowAlert(Page, AlertService.AlertType.Warning, new SweetAlertModel
                 {
                     Title = "Upozorenje!",
-                    Text = "Ne možete obrisati željeni tag. Tag je dodjeljen nekom od apartmana."
+                    Text = "Ne možete obrisati odabrani tag. Tag je dodjeljen nekom od apartmana."
                 });
 
                 return;
@@ -72,8 +72,22 @@ namespace Administrator
                     int currentPageIndex = (int)ViewState["CurrentPageIndex"];
 
                     GetData(currentPageIndex, PAGE_SIZE);
+
+                    AlertService.ShowAlert(Page, AlertService.AlertType.Success, new SweetAlertModel
+                    {
+                        Title = "Uspjeh!",
+                        Text = "Uspješno ste obrisali odabrani tag."
+                    });
+
+                    return;
                 }
-                
+
+                AlertService.ShowAlert(Page, AlertService.AlertType.Info, new SweetAlertModel
+                {
+                    Title = "Info!",
+                    Text = "Nismo uspjeli obrisati odabrani tag!"
+                });
+
             }
             catch (Exception)
             {

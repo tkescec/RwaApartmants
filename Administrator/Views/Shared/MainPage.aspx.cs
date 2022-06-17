@@ -3,6 +3,7 @@ using DAL.Collection;
 using DAL.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -61,11 +62,44 @@ namespace Administrator.Views.Shared
                         dropDownList.DataBind();
                     }
                 }
+                else if (control.GetType() == typeof(CheckBoxList))
+                {
+                    using (CheckBoxList checkBoxList = control as CheckBoxList)
+                    {
+                        checkBoxList.DataSource = data;
+                        checkBoxList.DataTextField = dataTextField;
+                        checkBoxList.DataValueField = dataValueField;
+                        checkBoxList.DataBind();
+                    }
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        protected decimal ConvertCurrencyStringToDecimal(string text, string separator, string currency)
+        {
+            NumberFormatInfo FormatInfo = new NumberFormatInfo();
+            FormatInfo.CurrencyGroupSeparator = separator;
+            FormatInfo.CurrencySymbol = currency;
+
+            return decimal.Parse(text, NumberStyles.Currency, FormatInfo);
+        }
+
+        protected int? TryIntParse(string v)
+        {
+            int result;
+
+            Int32.TryParse(v, out result);
+
+            if (result == 0)
+            {
+                return null;
+            }
+
+            return result;
         }
     }
 }

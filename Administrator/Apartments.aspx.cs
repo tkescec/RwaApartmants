@@ -19,6 +19,10 @@ namespace Administrator
         private IList<City> _allCities;
         private IList<ApartmentStatus> _allApartmentStatuses;
         private IList<Apartment> _allApartments;
+        private int _cityFilter;
+        private int _statusFilter;
+        private string _sortFilter;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -27,16 +31,17 @@ namespace Administrator
 
                 if (IsPostBack)
                 {
-                    int cityFilter = Int32.Parse(filterByCity.SelectedValue);
-                    int statusFilter = Int32.Parse(filterByStatus.SelectedValue);
-                    string sortFilter = sortBy.SelectedValue.Trim().ToLower();
+                    _cityFilter = Int32.Parse(filterByCity.SelectedValue);
+                    _statusFilter = Int32.Parse(filterByStatus.SelectedValue);
+                    _sortFilter = sortBy.SelectedValue.Trim().ToLower();
 
-                    GetData(typeof(Apartment), PAGE_INDEX, PAGE_SIZE, cityFilter, statusFilter, sortFilter);
+                    GetData(typeof(Apartment), PAGE_INDEX, PAGE_SIZE, _cityFilter, _statusFilter, _sortFilter);
                     BuildPagination(_data);
 
                     return;
                 }
 
+                ViewState["CurrentPageIndex"] = PAGE_INDEX;
                 GetData(typeof(City));
                 GetData(typeof(ApartmentStatus));
                 GetData(typeof(Apartment), PAGE_INDEX, PAGE_SIZE);
@@ -55,6 +60,7 @@ namespace Administrator
 
         protected void BtnPage_Click(object sender, PaginationEventArgs e)
         {
+            ViewState["CurrentPageIndex"] = e.PageIndex;
             GetData(typeof(Apartment), e.PageIndex, PAGE_SIZE);
         }
 
@@ -62,6 +68,39 @@ namespace Administrator
         {
             RepeaterItem item = (sender as LinkButton).Parent as RepeaterItem;
             int apartmentId = int.Parse((item.FindControl("lblApartmentId") as Label).Text);
+
+            try
+            {
+                if (Repositories.ApartmentRepository.DeleteApartments(apartmentId))
+                {
+                    int currentPageIndex = (int)ViewState["CurrentPageIndex"];
+
+                    GetData(typeof(Apartment), currentPageIndex, PAGE_SIZE, _cityFilter, _statusFilter, _sortFilter);
+
+                    AlertService.ShowAlert(Page, AlertService.AlertType.Success, new SweetAlertModel
+                    {
+                        Title = "Uspjeh!",
+                        Text = "Uspješno ste obrisali odabrani apartman."
+                    });
+
+                    return;
+                }
+
+                AlertService.ShowAlert(Page, AlertService.AlertType.Info, new SweetAlertModel
+                {
+                    Title = "Info!",
+                    Text = "Nismo uspjeli obrisati odabrani apartman!"
+                });
+
+            }
+            catch (Exception)
+            {
+                AlertService.ShowAlert(Page, AlertService.AlertType.Error, new SweetAlertModel
+                {
+                    Title = "Greška!",
+                    Text = "Došlo je do problema. Molimo kontaktirajte administratora stranice."
+                });
+            }
         }
 
         private void GetData(Type type)
