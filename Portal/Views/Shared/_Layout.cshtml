@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Portal</title>
+
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/main-color.css" id="colors" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- BEGIN #header -->
+        <partial name="_Header" />
+        <!-- END #header -->
+
+        <main role="main">
+            @RenderBody()
+        </main>
+
+        <!-- BEGIN #footer -->
+        <partial name="_Footer" />
+        <!-- END #footer -->
+
+        <!-- Back To Top Button -->
+        <div id="backtotop"><a href="#"></a></div>
+    </div>
+    <!-- Wrapper / End -->
+
+    <script src="~/js/jquery-3.4.1.min.js"></script>
+    <script src="~/js/jquery-migrate-3.1.0.min.js"></script>
+    <script src="~/js/mmenu.min.js"></script>
+    <script src="~/js/chosen.min.js"></script>
+    <script src="~/js/slick.min.js"></script>
+    <script src="~/js/rangeslider.min.js"></script>
+    <script src="~/js/magnific-popup.min.js"></script>
+    <script src="~/js/waypoints.min.js"></script>
+    <script src="~/js/counterup.min.js"></script>
+    <script src="~/js/jquery-ui.min.js"></script>
+    <script src="~/js/tooltips.min.js"></script>
+    <script src="~/js/custom.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
