@@ -207,6 +207,113 @@ namespace DAL.Repositories.Apartments
             return apartmentOwners;
         }
 
+        public IList<Tag> GetApartmentTags(int apartmentId)
+        {
+
+            IList<Tag> tags = new List<Tag>();
+
+            using (SqlConnection connection = new SqlConnection(CS))
+            {
+                SqlCommand command = new SqlCommand(QueryStringCollection.APARTMENT_TAGS, connection);
+                command.Parameters.AddWithValue("@apartmentId", apartmentId);
+
+                using (SqlDataAdapter da = new SqlDataAdapter(command))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        tags.Add(
+                            new Tag
+                            {
+                                TagID = (int)row[nameof(Tag.TagID)],
+                                Name = row[nameof(Tag.Name)].ToString(),
+                                NameEng = row[nameof(Tag.NameEng)].ToString(),
+                            }
+                        );
+                    }
+                }
+
+            }
+
+            return tags;
+        }
+
+        public IList<ApartmentPicture> GetApartmentPictures(int apartmentId)
+        {
+            IList<ApartmentPicture> apartmentPictures = new List<ApartmentPicture>();
+
+            using (SqlConnection connection = new SqlConnection(CS))
+            {
+                SqlCommand command = new SqlCommand(QueryStringCollection.APARTMENT_PICTURES, connection);
+                command.Parameters.AddWithValue("@apartmentId", apartmentId);
+
+                using (SqlDataAdapter da = new SqlDataAdapter(command))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        apartmentPictures.Add(
+                            new ApartmentPicture
+                            {
+                                Path = row[nameof(ApartmentPicture.Path)].ToString(),
+                                Base64Content = row[nameof(ApartmentPicture.Base64Content)].ToString(),
+                                Name = row[nameof(ApartmentPicture.Name)].ToString(),
+                                IsRepresentative = (bool)row[nameof(ApartmentPicture.IsRepresentative)],
+                            }
+                        );
+                    }
+                }
+
+            }
+
+            return apartmentPictures;
+        }
+
+        public ApartmentViewModel GetApartment(int apartmentId)
+        {
+            ApartmentViewModel apartment = null;
+            IList<Tag> tags = GetApartmentTags(apartmentId);
+            IList<ApartmentPicture> pictures = GetApartmentPictures(apartmentId);
+
+            SqlParameter[] spParameter = new SqlParameter[1];
+
+            spParameter[0] = new SqlParameter("@ApartmentId", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Input,
+                Value = apartmentId
+            };
+
+            var tblUsers = SqlHelper.ExecuteDataset(CS, CommandType.StoredProcedure, nameof(GetApartment), spParameter).Tables[0];
+
+
+            if (tblUsers.Rows.Count > 0)
+            {
+                var row = tblUsers.Rows[0];
+
+                apartment = new ApartmentViewModel
+                {
+                    OwnerId = (int)row[nameof(ApartmentViewModel.OwnerId)],
+                    StatusId = (int)row[nameof(ApartmentViewModel.StatusId)],
+                    CityId = (int)row[nameof(ApartmentViewModel.CityId)],
+                    Name = row[nameof(ApartmentViewModel.Name)].ToString(),
+                    NameEng = row[nameof(ApartmentViewModel.NameEng)].ToString(),
+                    Price = (decimal)row[nameof(ApartmentViewModel.Price)],
+                    MaxAdults = (int)row[nameof(ApartmentViewModel.MaxAdults)],
+                    MaxChildren = (int)row[nameof(ApartmentViewModel.MaxChildren)],
+                    TotalRooms = (int)row[nameof(ApartmentViewModel.TotalRooms)],
+                    BeachDistance = (int)row[nameof(ApartmentViewModel.BeachDistance)],
+                    Pictures = pictures,
+                    Tags = tags
+                };
+            }
+
+            return apartment;
+        }
+
         public bool DeleteApartments(int apartmentId)
         {
             SqlParameter[] spParameter = new SqlParameter[1];
@@ -339,9 +446,9 @@ namespace DAL.Repositories.Apartments
             return false;
         }
 
-        public bool AddApartmentTags(int? apartmentId, IList<int> apartmentTags)
+        public bool AddApartmentTags(int? apartmentId, IList<Tag> apartmentTags)
         {
-            foreach (int tagId in apartmentTags)
+            foreach (Tag tag in apartmentTags)
             {
                 SqlParameter[] spParameter = new SqlParameter[2];
 
@@ -354,7 +461,7 @@ namespace DAL.Repositories.Apartments
                 spParameter[1] = new SqlParameter("@TagId", SqlDbType.Int)
                 {
                     Direction = ParameterDirection.Input,
-                    Value = tagId
+                    Value = tag.TagID
                 };
 
                 SqlHelper.ExecuteDataset(CS, CommandType.StoredProcedure, nameof(AddApartmentTags), spParameter);
@@ -363,9 +470,9 @@ namespace DAL.Repositories.Apartments
             return true;
         }
 
-        public bool AddApartmentPictures(int? apartmentId, IList<ApartmentPictureViewModel> apartmentPictures)
+        public bool AddApartmentPictures(int? apartmentId, IList<ApartmentPicture> apartmentPictures)
         {
-            foreach (ApartmentPictureViewModel apartmentPicture in apartmentPictures)
+            foreach (ApartmentPicture apartmentPicture in apartmentPictures)
             {
                 SqlParameter[] spParameter = new SqlParameter[7];
 
@@ -393,7 +500,7 @@ namespace DAL.Repositories.Apartments
                     Value = apartmentPicture.Path
                 };
 
-                spParameter[4] = new SqlParameter("@Base64Content", SqlDbType.NVarChar)
+                spParameter[4] = new SqlParameter("@Base64Content", SqlDbType.VarChar)
                 {
                     Direction = ParameterDirection.Input,
                     Value = apartmentPicture.Base64Content
@@ -417,6 +524,7 @@ namespace DAL.Repositories.Apartments
             return true;
         }
 
+
         #region Private Methods
         private Apartment CreateApartmentModel(DataRow row)
         {
@@ -437,6 +545,19 @@ namespace DAL.Repositories.Apartments
                 Picture = GetFeaturedImage(row[nameof(Apartment.Picture)].ToString()),
                 CreatedAt = (DateTime?)(row.IsNull(nameof(Apartment.CreatedAt)) ? null : row[nameof(Apartment.CreatedAt)]),
                 DeletedAt = (DateTime?)(row.IsNull(nameof(Apartment.DeletedAt)) ? null : row[nameof(Apartment.DeletedAt)]),
+            };
+        }
+        private Tag CreateTagModel(DataRow row)
+        {
+            return new Tag
+            {
+                TagID = (int)row[nameof(Tag.TagID)],
+                Name = row[nameof(Tag.Name)].ToString(),
+                NameEng = row[nameof(Tag.NameEng)].ToString(),
+                TypeName = row[nameof(Tag.TypeName)].ToString(),
+                TypeNameEng = row[nameof(Tag.TypeNameEng)].ToString(),
+                Picture = row[nameof(Tag.Picture)].ToString(),
+                ApartmentCount = (int)row[nameof(Tag.ApartmentCount)],
             };
         }
         private string GetSortDirection(string iSortFilter)

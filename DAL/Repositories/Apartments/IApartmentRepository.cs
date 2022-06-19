@@ -14,7 +14,9 @@ namespace DAL.Repositories.Apartments
         IList<ApartmentOwner> GetApartmentOwners();
         bool DeleteApartments(int apartmentId);
         bool AddApartment(ApartmentViewModel apartment);
-        bool AddApartmentTags(int? apartmentId, IList<int> apartmentTags);
-        bool AddApartmentPictures(int? apartmentId, IList<ApartmentPictureViewModel> apartmentPictures);
+        bool AddApartmentTags(int? apartmentId, IList<Tag> apartmentTags);
+        bool AddApartmentPictures(int? apartmentId, IList<ApartmentPicture> apartmentPictures);
+        ApartmentViewModel GetApartment(int apartmentId);
+        IList<Tag> GetApartmentTags(int apartmentId);
     }
 }

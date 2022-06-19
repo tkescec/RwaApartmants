@@ -21,7 +21,8 @@ namespace DAL.Repositories.Users
         {
             PaginationCollection<User> pagination = new PaginationCollection<User>
             {
-                TotalRecords = 0
+                TotalRecords = 0,
+                Collection = new List<User>()
             };
 
             SqlParameter[] spParameter = new SqlParameter[1];
@@ -35,6 +36,13 @@ namespace DAL.Repositories.Users
             var tblUsers = SqlHelper.ExecuteDataset(CS, CommandType.StoredProcedure, nameof(GetUsers), spParameter).Tables[0];
 
             pagination.TotalRecords = Convert.ToInt32(spParameter[0].Value);
+
+            foreach (DataRow row in tblUsers.Rows)
+            {
+                pagination.Collection.Add(
+                    CreateUserModel(row)  
+                );
+            }
 
             return pagination;
         }
@@ -76,18 +84,25 @@ namespace DAL.Repositories.Users
             foreach (DataRow row in tblUsers.Rows)
             {
                 pagination.Collection.Add(
-                    new User
-                    {
-                        UserID = (int)row[nameof(User.UserID)],
-                        Username = row[nameof(User.Username)].ToString(),
-                        Role = row[nameof(User.Role)].ToString(),
-                        EmailConfirmed = (bool)row[nameof(User.EmailConfirmed)],
-                        DeletedAt = (DateTime?)(row.IsNull(nameof(User.DeletedAt)) ? null : row[nameof(User.DeletedAt)]),
-                    }
+                    CreateUserModel(row)
                 );
             }
             
             return pagination;
         }
+
+        #region Private Methods
+        private User CreateUserModel(DataRow row)
+        {
+            return new User
+            {
+                UserID = (int)row[nameof(User.UserID)],
+                Username = row[nameof(User.Username)].ToString(),
+                Role = row[nameof(User.Role)].ToString(),
+                EmailConfirmed = (bool)row[nameof(User.EmailConfirmed)],
+                DeletedAt = (DateTime?)(row.IsNull(nameof(User.DeletedAt)) ? null : row[nameof(User.DeletedAt)]),
+            };
+        }
+        #endregion
     }
 }

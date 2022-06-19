@@ -22,8 +22,8 @@ namespace DAL.Models.ViewModels
         public int? MaxChildren { get; set; }
         public int? TotalRooms { get; set; }
         public int? BeachDistance { get; set; }
-        public IList<int> Tags { get; set; }
-        public IList<ApartmentPictureViewModel> Pictures { get; set; }
+        public IList<Tag> Tags { get; set; }
+        public IList<ApartmentPicture> Pictures { get; set; }
         
     }
 }

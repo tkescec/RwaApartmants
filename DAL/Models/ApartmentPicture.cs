@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Models.ViewModels
+namespace DAL.Models
 {
-    public class ApartmentPictureViewModel
+    public class ApartmentPicture
     {
         public Guid GUID { get; set; }
         public DateTime CreatedAt { get; set; }

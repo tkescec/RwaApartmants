@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Collection\ImagesCollection.cs" />
     <Compile Include="Collection\PaginationCollection.cs" />
+    <Compile Include="Collection\QueryStringCollection.cs" />
     <Compile Include="Models\Apartment.cs" />
     <Compile Include="Models\ApartmentOwner.cs" />
     <Compile Include="Models\ApartmentStatus.cs" />
@@ -56,8 +57,9 @@
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\TagType.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\ViewModels\ApartmentPictureViewModel.cs" />
+    <Compile Include="Models\ApartmentPicture.cs" />
     <Compile Include="Models\ViewModels\ApartmentViewModel.cs" />
+    <Compile Include="Models\ViewModels\ReservationViewModel.cs" />
     <Compile Include="Models\ViewModels\TagViewModel.cs" />
     <Compile Include="Repositories\Apartments\ApartmentRepository.cs" />
     <Compile Include="Repositories\Apartments\IApartmentRepository.cs" />

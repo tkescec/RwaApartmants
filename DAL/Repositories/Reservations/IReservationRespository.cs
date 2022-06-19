@@ -1,5 +1,6 @@
 ﻿using DAL.Collection;
 using DAL.Models;
+using DAL.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace DAL.Repositories.Reservations
         PaginationCollection<Reservation> GetReservations();
         PaginationCollection<Reservation> GetReservations(int iPageIndex, int iPageSize);
         PaginationCollection<Reservation> GetReservations(int iPageIndex, int iPageSize, int? apartmentId);
+        bool AddReservation(ReservationViewModel reservation);
     }
 }

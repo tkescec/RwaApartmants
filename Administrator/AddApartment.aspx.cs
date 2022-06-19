@@ -50,7 +50,7 @@ namespace Administrator
                 try
                 {
                     Guid guid = Guid.NewGuid();
-                    IList<ApartmentPictureViewModel> apartmentPictures = UploadImages(fileApartmentImages, guid);
+                    IList<ApartmentPicture> apartmentPictures = UploadImages(fileApartmentImages, guid);
 
                     ApartmentViewModel apartmentModel = new ApartmentViewModel()
                     {
@@ -91,7 +91,7 @@ namespace Administrator
                         Text = "Nismo uspjeli dodati novi apartman!"
                     });
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     AlertService.ShowAlert(Page, AlertService.AlertType.Error, new SweetAlertModel
                     {
@@ -128,42 +128,41 @@ namespace Administrator
             }
         }
 
-        private IList<ApartmentPictureViewModel> UploadImages(FileUpload fileUpload, Guid guid)
+        private IList<ApartmentPicture> UploadImages(FileUpload fileUpload, Guid guid)
         {
             int count = 1;
-            IList<ApartmentPictureViewModel> apartmentPictures = new List<ApartmentPictureViewModel>();
+            IList<ApartmentPicture> apartmentPictures = new List<ApartmentPicture>();
 
             if (fileUpload.HasFiles)
             {
                 string apartmentImageDirectory = "~/Images/" + guid.ToString().ToUpper() + "/";
 
-                if (!System.IO.Directory.Exists(Server.MapPath(apartmentImageDirectory)))
+                if (!Directory.Exists(Server.MapPath(apartmentImageDirectory)))
                 {
-                    System.IO.Directory.CreateDirectory(Server.MapPath(apartmentImageDirectory));
+                    Directory.CreateDirectory(Server.MapPath(apartmentImageDirectory));
                 }
 
                 foreach (HttpPostedFile uploadedFile in fileUpload.PostedFiles)
                 {
-                    if (System.Web.MimeMapping.GetMimeMapping(uploadedFile.FileName).StartsWith("image/"))
+                    if (MimeMapping.GetMimeMapping(uploadedFile.FileName).StartsWith("image/"))
                     {
 
-                        string apartmentImagePath = System.IO.Path.Combine(Server.MapPath(apartmentImageDirectory), uploadedFile.FileName);
+                        string apartmentImagePath = Path.Combine(Server.MapPath(apartmentImageDirectory), uploadedFile.FileName);
 
                         uploadedFile.SaveAs(apartmentImagePath);
 
-                        using (System.Drawing.Image image = System.Drawing.Image.FromFile(apartmentImagePath))
+                        using (Stream fs = uploadedFile.InputStream)
                         {
-                            using (MemoryStream m = new MemoryStream())
+                            using (BinaryReader br = new BinaryReader(fs))
                             {
-                                image.Save(m, image.RawFormat);
-                                byte[] imageBytes = m.ToArray();
-                                string base64String = Convert.ToBase64String(imageBytes);
+                                byte[] bytes = br.ReadBytes((Int32)fs.Length);
+                                string base64String = "data:image/png;base64," + Convert.ToBase64String(bytes, 0, bytes.Length);
 
-                                ApartmentPictureViewModel apartmentPictureViewModel = new ApartmentPictureViewModel()
+                                ApartmentPicture apartmentPictureViewModel = new ApartmentPicture()
                                 {
                                     GUID = Guid.NewGuid(),
                                     CreatedAt = DateTime.Now,
-                                    Path = System.IO.Path.Combine(guid.ToString().ToUpper() + "/", uploadedFile.FileName),
+                                    Path = Path.Combine(guid.ToString().ToUpper() + "/", uploadedFile.FileName),
                                     Base64Content = base64String,
                                     Name = "",
                                     IsRepresentative = count == 1
@@ -181,15 +180,20 @@ namespace Administrator
             return apartmentPictures;
         }
 
-        private IList<int> GetSelectedTags()
+        private IList<Tag> GetSelectedTags()
         {
-            IList<int> tags = new List<int>();
+            IList<Tag> tags = new List<Tag>();
 
             foreach (ListItem listItem in cblApartmentTags.Items)
             {
                 if (listItem.Selected)
                 {
-                    tags.Add(Int32.Parse(listItem.Value));
+                    tags.Add(
+                        new Tag
+                        {
+                            TagID = Int32.Parse(listItem.Value)
+                        }    
+                    );
                 }
             }
 

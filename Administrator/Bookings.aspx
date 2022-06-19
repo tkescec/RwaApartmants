@@ -19,7 +19,7 @@
         <!-- Listings -->
         <div class="col-lg-12 col-md-12">
             <div class="dashboard-list-box margin-top-0">
-                <h4>Svi rezervacije</h4>
+                <h4>Sve rezervacije</h4>
                 <ul>
                     <asp:Repeater ID="rptReservations" runat="server">
                         <ItemTemplate>

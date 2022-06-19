@@ -82,7 +82,7 @@
                                     : (((DAL.Models.Apartment)Container.DataItem).Status == "Zauzeto") ? "canceled-booking" : "pending-booking" %>'>
                                 <div class="list-box-listing bookings apartments">
                                     <div class="list-box-listing-img">
-                                        <asp:Image ID="ApartmentFeaturedImage" runat="server" ImageUrl='<%# ((DAL.Models.Apartment)Container.DataItem).Picture %>' />
+                                        <asp:Image ID="ApartmentFeaturedImage" runat="server" ImageUrl="<%# ((DAL.Models.Apartment)Container.DataItem).Picture %>" />
                                     </div>
                                     <div class="list-box-listing-content">
                                         <div class="inner">
@@ -123,13 +123,12 @@
                                                 </ul>
                                             </div>
 
-                                           <%-- <a href="#small-dialog" class="rate-review popup-with-zoom-anim"><i class="sl sl-icon-envelope-open"></i>Send Message</a>--%>
-
+                                            <a href='<%# "/BookApartment.aspx?ApartmentId=" + ((DAL.Models.Apartment)Container.DataItem).ApartmentID %>' class="rate-review"><i class="sl sl-icon-call-in"></i> Rezerviraj</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="buttons-to-right">
-                                    <a href='<%# "/BookApartment.aspx?ApartmentId=" + ((DAL.Models.Apartment)Container.DataItem).ApartmentID %>' class="button gray approve"><i class="sl sl-icon-call-in"></i> Rezerviraj</a>
+                                    <%--<a href='<%# "/EditApartment.aspx?ApartmentId=" + ((DAL.Models.Apartment)Container.DataItem).ApartmentID %>' class="button gray approve"><i class="sl sl-icon-note"></i> Uredi</a>--%>
                                     <asp:LinkButton ID="DeleteApartment" CssClass="button gray reject" runat="server" OnClick="DeleteApartment_Click" OnClientClick="return confirm('Da li si siguran da želiš obrisati apartman?');"><i class="sl sl-icon-close"></i> Izbriši</asp:LinkButton>
                                 </div>
                             </li>

@@ -116,6 +116,7 @@
     <Content Include="Controls\Pagination.ascx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="EditApartment.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Fonts\fontawesome-webfont.svg" />
     <Content Include="Fonts\fontello.svg" />
@@ -259,6 +260,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditApartment.aspx.cs">
+      <DependentUpon>EditApartment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditApartment.aspx.designer.cs">
+      <DependentUpon>EditApartment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Events\Pagination\PaginationEventArgs.cs" />
     <Compile Include="Events\Pagination\PaginationDelegate.cs" />
