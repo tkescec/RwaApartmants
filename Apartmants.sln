@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{6BE8AA35-7F86-4895-9F8E-F4E50D0B2CFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal", "Portal\Portal.csproj", "{8D2D6075-89AC-430E-BEAE-44531CA050E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Listeo", "Listeo\Listeo.csproj", "{C9CB65B6-774C-44D5-9D92-D2A88F2082F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{6BE8AA35-7F86-4895-9F8E-F4E50D0B2CFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BE8AA35-7F86-4895-9F8E-F4E50D0B2CFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BE8AA35-7F86-4895-9F8E-F4E50D0B2CFC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8D2D6075-89AC-430E-BEAE-44531CA050E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8D2D6075-89AC-430E-BEAE-44531CA050E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8D2D6075-89AC-430E-BEAE-44531CA050E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8D2D6075-89AC-430E-BEAE-44531CA050E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9CB65B6-774C-44D5-9D92-D2A88F2082F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9CB65B6-774C-44D5-9D92-D2A88F2082F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9CB65B6-774C-44D5-9D92-D2A88F2082F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9CB65B6-774C-44D5-9D92-D2A88F2082F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

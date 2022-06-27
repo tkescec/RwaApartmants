@@ -98,6 +98,7 @@ namespace DAL.Repositories.Users
             {
                 UserID = (int)row[nameof(User.UserID)],
                 Username = row[nameof(User.Username)].ToString(),
+                PhoneNumber = row[nameof(User.PhoneNumber)].ToString(),
                 Role = row[nameof(User.Role)].ToString(),
                 EmailConfirmed = (bool)row[nameof(User.EmailConfirmed)],
                 DeletedAt = (DateTime?)(row.IsNull(nameof(User.DeletedAt)) ? null : row[nameof(User.DeletedAt)]),

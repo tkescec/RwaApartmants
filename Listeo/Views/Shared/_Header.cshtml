@@ -1,0 +1,51 @@
+﻿<header id="header-container">
+
+    <!-- Header -->
+    <div id="header">
+        <div class="container">
+
+            <!-- Left Side Content -->
+            <div class="left-side">
+
+                <!-- Logo -->
+                <div id="logo">
+                    <a href="/">
+                        <img src="~/images/logo.png" alt="">
+                    </a>
+                </div>
+
+                <!-- Mobile Navigation -->
+                <div class="mmenu-trigger">
+                    <button class="hamburger hamburger--collapse" type="button">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Main Navigation -->
+                <nav id="navigation" class="style-1">
+                    <ul id="responsive">
+                        <li>
+                            <a href="/" class="@(Request.Url.AbsolutePath == "/" ? "current" : "")">Apartments</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="clearfix"></div>
+                <!-- Main Navigation / End -->
+
+            </div>
+            <!-- Left Side Content / End -->
+            <!-- Right Side Content / End -->
+            <div class="right-side">
+                <div class="header-widget">
+                    @Html.Partial("_Account")
+                </div>
+            </div>
+            <!-- Right Side Content / End -->
+        </div>
+    </div>
+    <!-- Header / End -->
+
+</header>
+<div class="clearfix"></div>

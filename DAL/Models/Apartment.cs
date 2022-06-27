@@ -6,6 +6,7 @@ namespace DAL.Models
     public class Apartment
     {
         public int ApartmentID { get; set; }
+        public int? StatusID { get; set; }
         public string Owner { get; set; }
         public string Status { get; set; }
         public string City { get; set; }
@@ -18,6 +19,7 @@ namespace DAL.Models
         public int? TotalRooms { get; set; }
         public int? BeachDistance { get; set; }
         public string Picture { get; set; }
+        public string Base64Content { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
     }

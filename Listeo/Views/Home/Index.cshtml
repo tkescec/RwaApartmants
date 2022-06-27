@@ -1,0 +1,148 @@
+﻿@model Listeo.Models.ApartmentCookieViewModel
+@{
+    ViewBag.Title = "Apartments";
+}
+
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="gradient">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h2>Apartments</h2><span></span>
+
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("_Notifications")
+
+</div>
+
+<!-- Content
+================================================== -->
+<div class="container">
+    <div class="row">
+
+        <!-- Search -->
+        <div class="col-md-12">
+            <div class="main-search-input gray-style margin-top-0 margin-bottom-10">
+
+
+                <div class="main-search-input-item input-tip" data-tip-content="Number of Rooms.">
+                    <input type="number" id="filterRooms" placeholder="Rooms" value="@(Model.Rooms != 0 ? Model.Rooms.ToString() : "")" />
+                </div>
+
+                <div class="main-search-input-item input-tip" data-tip-content="Number of Adults.">
+                    <input type="number" id="filterAdults" placeholder="Adults" value="@(Model.Adults != 0 ? Model.Adults.ToString() : "")" />
+                </div>
+
+                <div class="main-search-input-item input-tip" data-tip-content="Number of Children.">
+                    <input type="number" id="filterChildren" placeholder="Children" value="@(Model.Children != 0 ? Model.Children.ToString() : "")" />
+                </div>
+
+                <div class="main-search-input-item">
+                    <select id="filterCity" data-placeholder="All Cities" class="chosen-select-no-single">
+                        <option value="">All Cities</option>
+                        @if (Model.Cities != null)
+                        {
+                            foreach (var city in Model.Cities)
+                            {
+                                <option value="@city.Name" @(city.Name == Model.SelectedCity ? "selected" : "")>@city.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <button class="button" id="filterBtn">Filter</button>
+            </div>
+        </div>
+        <!-- Search Section / End -->
+
+
+        <div class="col-md-12">
+
+            <!-- Sorting - Filtering Section -->
+            <div class="row margin-bottom-25 margin-top-30">
+
+                <div class="col-md-12">
+                    <div class="fullwidth-filters">
+                        <!-- Sort by -->
+                        <div class="sort-by">
+                            <div class="sort-by-select">
+                                <select data-placeholder="Default order" class="chosen-select-no-single" id="sortBy">
+                                    <option value="0" @(Model.Sort == 0 ? "selected" : "")>Default Order</option>
+                                    <option value="1" @(Model.Sort == 1 ? "selected" : "")>Highest Price</option>
+                                    <option value="2" @(Model.Sort == 2 ? "selected" : "")>Lowest Price</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Sort by / End -->
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- Sorting - Filtering Section / End -->
+
+            <div id="partialContent">
+
+            </div>
+
+            <!-- Pagination -->
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center" id="loadMoreButton">
+                        <a href="javascript:filterContent({
+                            controller: 'Home',
+                            divId: 'partialContent',
+                            page: @ViewBag.Page + 1,
+                            items: @TempData["ApartmentItems"],
+                            showMoreId: 'loadMoreButton',
+                            showLoadMore: '@(ViewBag.MoreApartments)',
+                            filterBtnId: 'filterBtn',
+                            filterRoomsId: 'filterRooms',
+                            filterAdultsId: 'filterAdults',
+                            filterChildrenId: 'filterChildren',
+                            filterCityId: 'filterCity',
+                            sortById: 'sortBy'
+                        });"
+                           class="button">
+                            Load more
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <!-- Pagination / End -->
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+
+            const settings = {
+                controller: 'Home',
+                divId: 'partialContent',
+                page: @ViewBag.Page,
+                items: @TempData["ApartmentItems"],
+                showMoreId: 'loadMoreButton',
+                showLoadMore: '@(ViewBag.MoreApartments)',
+                filterBtnId: 'filterBtn',
+                filterRoomsId: 'filterRooms',
+                filterAdultsId: 'filterAdults',
+                filterChildrenId: 'filterChildren',
+                filterCityId: 'filterCity',
+                sortById: 'sortBy'
+            };
+
+            filterContent(settings);
+        });
+    </script>
+}

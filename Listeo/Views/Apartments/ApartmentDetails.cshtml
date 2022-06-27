@@ -1,0 +1,277 @@
+﻿@model Listeo.Models.ApartmentListViewModel
+@{
+    ViewBag.Title = "Apartment Details";
+}
+
+<!-- Slider
+================================================== -->
+<div class="listing-slider mfp-gallery-container margin-bottom-0">
+    @if (Model.Gallery.Any())
+    {
+        foreach (var picture in Model.Gallery)
+        {
+            <a href="@picture.Base64Content" data-background-image="@picture.Base64Content" class="item mfp-gallery" title=""></a>
+        }
+    }
+</div>
+
+@Html.Partial("_Notifications")
+
+<!-- Content
+================================================== -->
+<div class="container">
+    <div class="row sticky-wrapper">
+        <div class="col-lg-8 col-md-8 padding-right-30">
+
+            <!-- Titlebar -->
+            <div id="titlebar" class="listing-titlebar">
+                <div class="listing-titlebar-title">
+                    <h2>@Model.Name</h2>
+                    <span>
+                        <a href="#listing-location" class="listing-address">
+                            <i class="fa fa-map-marker"></i>
+                            @Model.Address, @Model.City
+                        </a>
+                    </span>
+                    <div class="star-rating" data-rating="@Math.Round(Model.Reviews.Any() ? Model.Reviews.Average(r => r.Stars) : 0, 1, MidpointRounding.ToEven).ToString().Replace(',', '.')">
+                        <div class="rating-counter"><a href="#listing-reviews">(@Model.Reviews.Count() reviews)</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Listing Nav -->
+            <div id="listing-nav" class="listing-nav-container">
+                <ul class="listing-nav">
+                    <li><a href="#listing-overview" class="active">Overview</a></li>
+                    <li><a href="#listing-pricing-list">Pricing</a></li>
+                    <li><a href="#listing-reviews">Reviews</a></li>
+                    <li><a href="#add-review">Add Review</a></li>
+                </ul>
+            </div>
+
+            <!-- Overview -->
+            <div id="listing-overview" class="listing-section">
+
+                <!-- Description -->
+
+                <p>
+                    Ut euismod ultricies sollicitudin. Curabitur sed dapibus nulla. Nulla eget iaculis lectus. Mauris ac maximus neque. Nam in mauris quis libero sodales eleifend. Morbi varius, nulla sit amet rutrum elementum, est elit finibus tellus, ut tristique elit risus at metus.
+                </p>
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra.
+                </p>
+
+                <div class="clearfix"></div>
+
+
+                <!-- Amenities -->
+                <h3 class="listing-desc-headline">Amenities</h3>
+                <ul class="listing-features checkboxes margin-top-0">
+                    @if (Model.Tags.Any())
+                    {
+                        foreach (var tag in Model.Tags)
+                        {
+                            <li>@tag.NameEng</li>
+                        }
+                    }
+                </ul>
+            </div>
+
+
+            <!-- Food Menu -->
+            <div id="listing-pricing-list" class="listing-section">
+                <h3 class="listing-desc-headline margin-top-70 margin-bottom-30">Pricing</h3>
+
+                <div class="pricing-list-container">
+
+                    <!-- Food List -->
+                    <h4>Season 2022.</h4>
+                    <ul>
+                        <li>
+                            <h5>Basic</h5>
+                            <p>from 31.5. to 31.9.</p>
+                            <span>@string.Format("€{0:N2}", Model.Price)</span>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+            <!-- Food Menu / End -->
+            <!-- Reviews -->
+            <div id="listing-reviews" class="listing-section">
+                <h3 class="listing-desc-headline margin-top-75 margin-bottom-20">Reviews <span>(@Model.Reviews.Count())</span></h3>
+
+                <div class="clearfix"></div>
+
+                <!-- Reviews -->
+                <section class="comments listing-reviews">
+                    <ul>
+                        @if (Model.Reviews.Any())
+                        {
+                            foreach (var review in Model.Reviews)
+                            {
+                                <li>
+                                    <div class="avatar"><img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=70" alt="" /></div>
+                                    <div class="comment-content">
+                                        <div class="arrow-comment"></div>
+                                        <div class="comment-by">
+                                            @review.UserName <i class="tip" data-tip-content="Person who left this review actually was a customer"></i> <span class="date">@review.CreatedAt.ToString()</span>
+                                            <div class="star-rating" data-rating="@review.Stars"></div>
+                                        </div>
+                                        <p>@review.Details</p>
+                                    </div>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li class="text-center">
+                                There are currently no reviews. Be the first to leave a review.<br />
+                            </li>
+                        }
+                    </ul>
+                </section>
+
+
+            </div>
+            <!-- Add Review Box -->
+            <div id="add-review" class="add-review-box">
+
+                <!-- Add Review -->
+                <h3 class="listing-desc-headline margin-bottom-10">Add Review</h3>
+
+                @if (Model.User != null)
+                {
+                    <!-- Subratings Container -->
+                    <div class="sub-ratings-container">
+
+                        <!-- Subrating #1 -->
+                        <div class="add-sub-rating">
+                            <div class="sub-rating-title">Overall rating <i class="tip" data-tip-content="Quality of customer service and attitude to work with you"></i></div>
+                            <div class="sub-rating-stars">
+                                <!-- Leave Rating -->
+                                <div class="clearfix"></div>
+                                <form class="leave-rating" id="ReviewStars">
+                                    <input type="radio" name="rating" id="rating-1" value="5" />
+                                    <label for="rating-1" class="fa fa-star"></label>
+                                    <input type="radio" name="rating" id="rating-2" value="4" />
+                                    <label for="rating-2" class="fa fa-star"></label>
+                                    <input type="radio" name="rating" id="rating-3" value="3" />
+                                    <label for="rating-3" class="fa fa-star"></label>
+                                    <input type="radio" name="rating" id="rating-4" value="2" />
+                                    <label for="rating-4" class="fa fa-star"></label>
+                                    <input type="radio" name="rating" id="rating-5" value="1" />
+                                    <label for="rating-5" class="fa fa-star"></label>
+                                    <div class="text-danger" style="display:none" id="ratingError"><small>Select a rating!</small></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Subratings Container / End -->
+                    <!-- Review Comment -->
+                    <form id="reviewForm" class="add-comment">
+                        <fieldset>
+                            <div>
+                                <label>Review:</label>
+                                <textarea cols="40" rows="3" name="ReviewDetails" id="ReviewDetails"></textarea>
+                            </div>
+
+                        </fieldset>
+
+                        <button type="submit" class="button" id="SubmitReview">
+                            <img src="~/images/btn-loader.svg" />
+                            Submit Review
+                        </button>
+                        <div class="clearfix"></div>
+                    </form>
+                }
+                else
+                {
+                    <div class="text-center">
+                        <b>You must be logged in to post a review.</b>
+                        <br />
+                        <a href="@Url.Action("Login", "Account")" class="button book-now margin-top-5"><i class="sl sl-icon-login"></i> Sign In</a>
+                    </div>
+                }
+
+            </div>
+            <!-- Add Review Box / End -->
+        </div>
+
+
+        <!-- Sidebar
+        ================================================== -->
+        <div class="col-lg-4 col-md-4 margin-top-75 sticky">
+
+
+            <!-- Verified Badge -->
+            <div class="verified-badge with-tip" data-tip-content="This apartment is available for reservations.">
+                <i class="sl sl-icon-check"></i> Available
+            </div>
+
+            <!-- Contact -->
+            <div class="boxed-widget margin-top-35">
+                <div class="hosted-by-title">
+                    <h4><span>Hosted by</span> <a href="javascript:;">@Model.Owner</a></h4>
+                    <a href="javascript:;" class="hosted-by-avatar">
+                        <img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=70" alt="" />
+                    </a>
+                </div>
+                <ul class="listing-details-sidebar">
+                    <li><i class="sl sl-icon-arrow-right"></i>  <b>Total rooms: @Model.TotalRooms</b></li>
+                    <li><i class="sl sl-icon-arrow-right"></i>  <b>Max adults: @Model.MaxAdults</b></li>
+                    <li><i class="sl sl-icon-arrow-right"></i>  <b>Max children: @Model.MaxChildren</b></li>
+                    <li><i class="sl sl-icon-arrow-right"></i>  <b>Beach distance: @Model.BeachDistance (m)</b></li>
+                </ul>
+            </div>
+            <!-- Contact / End-->
+            <!-- Message Vendor -->
+            <div id="booking-widget-anchor" class="boxed-widget booking-widget message-vendor margin-top-35">
+                <form id="reservationForm">
+                    <h3><i class="fa fa-envelope-o"></i> Reservation</h3>
+                    <div class="row with-forms  margin-top-0">
+
+                        <div class="col-lg-12">
+                            <input type="hidden" value="@Model.ApartmentId.ToString()" name="ApartmentId" id="ApartmentId" />
+                            <input type="hidden" value="@(Model.User != null ? Model.User.UserID.ToString() : "")" name="UserId" id="UserId" />
+                            <input type="text" placeholder="First and Last Name" value="@(Model.User != null && Model.User.Username != null ? Model.User.Username.ToString() : "")" name="UserName" id="UserName" @(Model.User == null ? "required" : "")>
+                            <input type="email" placeholder="Email" value="@(Model.User != null && Model.User.Email != null ? Model.User.Email.ToString() : "")" name="UserEmail" id="UserEmail" @(Model.User == null ? "required" : "")>
+                            <input type="text" placeholder="Phone" value="@(Model.User != null && Model.User.PhoneNumber != null ? Model.User.PhoneNumber.ToString() : "")" name="UserPhone" id="UserPhone" @(Model.User == null ? "required" : "")>
+                            <input type="text" placeholder="Address" value="@(Model.User != null && Model.User.Address != null ? Model.User.Address.ToString() : "")" name="UserAddress" id="UserAddress" @(Model.User == null ? "required" : "")>
+                            <textarea name="Details" id="Details" cols="10" rows="2" placeholder="Details" required></textarea>
+                        </div>
+                    </div>
+                    @if (Model.User == null)
+                    {
+                        <!-- Recaptcha Holder -->
+                        <div class="captcha-holder">
+                            <div id="captcha"></div>
+                            <input type="text" placeholder="Captcha" id="captchaTextBox" required />
+                        </div>
+                    }
+
+                    <!-- Book Now -->
+                    <button type="submit" class="button book-now fullwidth margin-top-5" id="book">
+                        <img src="~/images/btn-loader.svg" />
+                        Book Now
+                    </button>
+                </form>
+            </div>
+            <!-- Book Now / End -->
+
+        </div>
+        <!-- Sidebar / End -->
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            App.init();
+        });
+    </script>
+}

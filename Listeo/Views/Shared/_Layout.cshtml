@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Listeo</title>
+
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    
+    <!-- Wrapper -->
+    <div id="wrapper">
+        
+        <!-- BEGIN #header -->
+        @Html.Partial("_Header")
+        <!-- END #header -->
+
+        <main role="main">
+            @RenderBody()
+        </main>
+
+        <!-- BEGIN #footer -->
+        @Html.Partial("_Footer")
+        <!-- END #footer -->
+        <!-- Back To Top Button -->
+        <div id="backtotop"><a href="#"></a></div>
+    </div>
+    <!-- Wrapper / End -->
+
+    @Scripts.Render("~/bundles/app")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

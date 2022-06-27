@@ -1,0 +1,50 @@
+﻿@model Listeo.Models.LoginViewModel
+@{
+    ViewBag.Title = "Sign In";
+}
+
+<!-- Sign In -->
+<div id="sign-in-dialog" class="zoom-anim-dialog">
+
+    <div class="small-dialog-header margin-bottom-0">
+        <h3>Sign In</h3>
+    </div>
+
+    <div class="sign-in-form style-1">
+
+        <div class="tabs-container alt">
+            <div class="text-center text-success">@ViewBag.Message</div>
+            <!-- Login -->
+            <div class="tab-content" id="tab1">
+
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <p class="form-row form-row-wide">
+                        <label for="Email">
+                            Email Address:
+                            <i class="im im-icon-Mail"></i>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "input-text" })
+                        </label>
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </p>
+                    <p class="form-row form-row-wide">
+                        <label for="Password">
+                            Password:
+                            <i class="im im-icon-Lock-2"></i>
+                            @Html.PasswordFor(m => m.Password, new { @class = "input-text" })
+                        </label>
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </p>
+
+                    <div class="form-row">
+                        <input type="submit" class="button border margin-top-5" name="login" value="Login" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sign In / End -->

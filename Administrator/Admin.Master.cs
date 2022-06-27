@@ -13,7 +13,7 @@ namespace Administrator
         {
             if (Session["user"] == null)
             {
-                //Response.Redirect("/");
+               Response.Redirect("/");
             }      
         }
 
@@ -22,7 +22,7 @@ namespace Administrator
             try
             {
                 ActiveNavItem();
-                //RenderUsernameOnNavbar();
+                RenderUsernameOnNavbar();
                 YearLabel.Text = DateTime.Now.Year.ToString();
             }
             catch (Exception)

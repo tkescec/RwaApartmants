@@ -11,7 +11,9 @@ namespace DAL.Models
     {
         public int ReviewID { get; set; }
         public string Apartment { get; set; }
+        public string UserName { get; set; }
         public string Details { get; set; }
         public int Stars { get; set; }
+        public DateTime? CreatedAt { get; set; }
     }
 }

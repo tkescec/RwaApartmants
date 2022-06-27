@@ -11,6 +11,7 @@ namespace DAL.Repositories.Reviews
     public interface IReviewRepository : IRepository<Review>
     {
         PaginationCollection<Review> GetReviews();
+        PaginationCollection<Review> GetReviews(int? apartmentId);
         PaginationCollection<Review> GetReviews(int iPageIndex, int iPageSize);
         PaginationCollection<Review> GetReviews(int iPageIndex, int iPageSize, int? apartmentId);
     }

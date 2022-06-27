@@ -42,6 +42,45 @@ namespace DAL.Repositories.Reviews
             return pagination;
         }
 
+        public PaginationCollection<Review> GetReviews(int? apartmentId)
+        {
+            PaginationCollection<Review> pagination = new PaginationCollection<Review>
+            {
+                TotalRecords = 0,
+                Collection = new List<Review>()
+            };
+
+            SqlParameter[] spParameter = new SqlParameter[2];
+
+            if (apartmentId != null)
+            {
+                spParameter[0] = new SqlParameter("@ApartmentId", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = apartmentId
+                };
+            }
+
+            spParameter[1] = new SqlParameter("@RecordCount", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Output,
+                DbType = DbType.Int32
+            };
+
+            var tblUsers = SqlHelper.ExecuteDataset(CS, CommandType.StoredProcedure, nameof(GetReviews), spParameter).Tables[0];
+
+            pagination.TotalRecords = Convert.ToInt32(spParameter[1].Value);
+
+            foreach (DataRow row in tblUsers.Rows)
+            {
+                pagination.Collection.Add(
+                    CreateReviewModel(row)
+                );
+            }
+
+            return pagination;
+        }
+
         public PaginationCollection<Review> GetReviews(int iPageIndex, int iPageSize)
         {
             PaginationCollection<Review> pagination = new PaginationCollection<Review>
@@ -146,8 +185,10 @@ namespace DAL.Repositories.Reviews
             {
                 ReviewID = (int)row[nameof(Review.ReviewID)],
                 Apartment = row[nameof(Review.Apartment)].ToString(),
+                UserName = row[nameof(Review.UserName)].ToString(),
                 Details = row[nameof(Review.Details)].ToString(),
-                Stars = (int)row[nameof(Review.Stars)]
+                Stars = (int)row[nameof(Review.Stars)],
+                CreatedAt = (DateTime?)(row.IsNull(nameof(Review.CreatedAt)) ? null : row[nameof(Review.CreatedAt)]),
             };
         }
         #endregion

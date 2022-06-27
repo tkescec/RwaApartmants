@@ -1,0 +1,28 @@
+﻿@using DAL.Models
+@{ 
+    User user = (User)Session["User"];
+}
+@if (user != null)
+{
+    using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        <nav id="navigation" class="style-1 pull-right">
+            <ul id="responsive">
+                <li>
+                    <a href="javascript:;"><i class="sl sl-icon-user"></i> @user.Username</a>
+                    <ul>
+                        <li>
+                            <button>Logout</button>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    }
+    
+}
+else
+{
+    <a href="~/Account/Login" class="sign-in"><i class="sl sl-icon-login"></i> Sign In</a>
+    <a href="~/Account/Register" asp-action="Register" class="sign-in"><i class="sl sl-icon-user-follow"></i> Sign Up</a>
+}

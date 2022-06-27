@@ -1,0 +1,46 @@
+﻿<div class="container">
+    @if (ViewBag.Message != null)
+    {
+        <div class="row" id="alert-box">
+            <div class="col-md-12">
+                <div class="notification success closeable">
+                    <p><h4>Success!</h4> @ViewBag.Message</p>
+                    <a class="close"></a>
+                </div>
+            </div>
+        </div>
+    }
+    else if (TempData["Message"] != null)
+    {
+        <div class="row" id="alert-box">
+            <div class="col-md-12">
+                <div class="notification success closeable">
+                    <p><h4>Success!</h4> @TempData["Message"]</p>
+                    <a class="close"></a>
+                </div>
+            </div>
+        </div>
+    }
+    else if (ViewBag.Error != null)
+    {
+        <div class="row" id="alert-box">
+            <div class="col-md-12">
+                <div class="notification error closeable">
+                    <p><h4>Error!</h4> @ViewBag.Error</p>
+                    <a class="close"></a>
+                </div>
+            </div>
+        </div>
+    }
+    else if (TempData["Error"] != null)
+    {
+        <div class="row" id="alert-box">
+            <div class="col-md-12">
+                <div class="notification error closeable">
+                    <p><h4>Error!</h4> @TempData["Error"]</p>
+                    <a class="close"></a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

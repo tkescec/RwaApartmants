@@ -20,7 +20,7 @@ namespace DAL.Repositories.Cities
 
         public IList<City> GetCities()
         {
-            List<City> cities = new List<City>();
+            IList<City> cities = new List<City>();
 
             var tblUsers = SqlHelper.ExecuteDataset(CS, CommandType.StoredProcedure, nameof(GetCities)).Tables[0];
 

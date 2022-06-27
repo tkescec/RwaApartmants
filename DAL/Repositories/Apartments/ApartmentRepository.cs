@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utilities;
 
 namespace DAL.Repositories.Apartments
 {
@@ -26,6 +27,7 @@ namespace DAL.Repositories.Apartments
             PaginationCollection<Apartment> pagination = new PaginationCollection<Apartment>
             {
                 TotalRecords = 0,
+                Collection = new List<Apartment>()
             };
 
             SqlParameter[] spParameter = new SqlParameter[1];
@@ -40,6 +42,12 @@ namespace DAL.Repositories.Apartments
 
             pagination.TotalRecords = Convert.ToInt32(spParameter[0].Value);
 
+            foreach (DataRow row in tblUsers.Rows)
+            {
+                pagination.Collection.Add(
+                    CreateApartmentModel(row)
+                );
+            }
 
             return pagination;
         }
@@ -299,8 +307,11 @@ namespace DAL.Repositories.Apartments
                     OwnerId = (int)row[nameof(ApartmentViewModel.OwnerId)],
                     StatusId = (int)row[nameof(ApartmentViewModel.StatusId)],
                     CityId = (int)row[nameof(ApartmentViewModel.CityId)],
+                    Address = row[nameof(ApartmentViewModel.Address)].ToString(),
+                    City = row[nameof(ApartmentViewModel.City)].ToString(),
                     Name = row[nameof(ApartmentViewModel.Name)].ToString(),
                     NameEng = row[nameof(ApartmentViewModel.NameEng)].ToString(),
+                    Owner = row[nameof(ApartmentViewModel.Owner)].ToString(),
                     Price = (decimal)row[nameof(ApartmentViewModel.Price)],
                     MaxAdults = (int)row[nameof(ApartmentViewModel.MaxAdults)],
                     MaxChildren = (int)row[nameof(ApartmentViewModel.MaxChildren)],
@@ -524,6 +535,65 @@ namespace DAL.Repositories.Apartments
             return true;
         }
 
+        public bool AddApartmentReservation(ReservationViewModel reservation)
+        {
+            if (reservation == null)
+            {
+                return false;
+            }
+
+            using (SqlConnection connection = new SqlConnection(CS))
+            {
+                SqlCommand command = new SqlCommand(QueryStringCollection.ADD_APARTMENT_RESERVATION, connection);
+                command.Parameters.AddWithValue("@Guid", reservation.GUID);
+                command.Parameters.AddWithValue("@CreatedAt", reservation.CreatedAt);
+                command.Parameters.AddWithValue("@ApartmentId", reservation.ApartmentID);
+                command.Parameters.AddWithValue("@UserId", reservation.UserID ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@UserName", reservation.UserName ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@UserEmail", reservation.UserEmail ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@UserPhone", reservation.UserPhone ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@UserAddress", reservation.UserAddress ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@Details", reservation.Details ?? (object)DBNull.Value);
+
+                connection.Open();
+                int i = command.ExecuteNonQuery();
+                connection.Close();
+
+                if (i >= 1){ return true; }
+
+                return false;
+
+            }
+        }
+
+        public bool AddApartmentReview(ReviewViewModel review)
+        {
+            if (review == null)
+            {
+                return false;
+            }
+
+            using (SqlConnection connection = new SqlConnection(CS))
+            {
+                SqlCommand command = new SqlCommand(QueryStringCollection.ADD_APARTMENT_REVIEW, connection);
+                command.Parameters.AddWithValue("@Guid", review.GUID);
+                command.Parameters.AddWithValue("@CreatedAt", review.CreatedAt);
+                command.Parameters.AddWithValue("@ApartmentId", review.ApartmentID);
+                command.Parameters.AddWithValue("@UserId", review.UserID);
+                command.Parameters.AddWithValue("@Stars", review.Stars);
+                command.Parameters.AddWithValue("@Details", review.Details ?? (object)DBNull.Value);
+
+                connection.Open();
+                int i = command.ExecuteNonQuery();
+                connection.Close();
+
+                if (i >= 1) { return true; }
+
+                return false;
+
+            }
+        }
+
 
         #region Private Methods
         private Apartment CreateApartmentModel(DataRow row)
@@ -531,6 +601,7 @@ namespace DAL.Repositories.Apartments
             return new Apartment
             {
                 ApartmentID = (int)row[nameof(Apartment.ApartmentID)],
+                StatusID = (int)row[nameof(Apartment.StatusID)],
                 Owner = row[nameof(Apartment.Owner)].ToString(),
                 Status = row[nameof(Apartment.Status)].ToString(),
                 City = row[nameof(Apartment.City)].ToString(),
@@ -542,7 +613,8 @@ namespace DAL.Repositories.Apartments
                 MaxChildren = (int)row[nameof(Apartment.MaxChildren)],
                 TotalRooms = (int)row[nameof(Apartment.TotalRooms)],
                 BeachDistance = (int)row[nameof(Apartment.BeachDistance)],
-                Picture = GetFeaturedImage(row[nameof(Apartment.Picture)].ToString()),
+                Picture = GetFeaturedImage(Images.ImageSource.File, row[nameof(Apartment.Picture)].ToString()),
+                Base64Content = GetFeaturedImage(Images.ImageSource.Base64, row[nameof(Apartment.Base64Content)].ToString()),
                 CreatedAt = (DateTime?)(row.IsNull(nameof(Apartment.CreatedAt)) ? null : row[nameof(Apartment.CreatedAt)]),
                 DeletedAt = (DateTime?)(row.IsNull(nameof(Apartment.DeletedAt)) ? null : row[nameof(Apartment.DeletedAt)]),
             };
@@ -593,14 +665,21 @@ namespace DAL.Repositories.Apartments
                     return "Price";
             }
         }
-        private string GetFeaturedImage(string path)
+        private string GetFeaturedImage(Images.ImageSource source, string content)
         {
-            if (path == "")
+            switch (source)
             {
-                return ImagesCollection.NO_IMAGE;
+                case Images.ImageSource.File:
+                    if (content != null && content != "")
+                        return System.IO.Path.Combine("~/Images/", content);
+                    return ImagesCollection.NO_IMAGE;
+                case Images.ImageSource.Base64:
+                    if (content != null && content != "")
+                        return content;
+                    return ImagesCollection.NO_IMAGE;
+                default:
+                    return ImagesCollection.NO_IMAGE;
             }
-
-            return System.IO.Path.Combine("~/Images/", path);
         }
         #endregion
     }

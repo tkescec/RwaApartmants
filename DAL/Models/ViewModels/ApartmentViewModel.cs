@@ -15,8 +15,10 @@ namespace DAL.Models.ViewModels
         public int StatusId { get; set; }
         public int CityId { get; set; }
         public string Address { get; set; }
+        public string City { get; set; }
         public string Name { get; set; }
         public string NameEng { get; set; }
+        public string Owner { get; set; }
         public decimal Price { get; set; }
         public int? MaxAdults { get; set; }
         public int? MaxChildren { get; set; }
@@ -24,6 +26,7 @@ namespace DAL.Models.ViewModels
         public int? BeachDistance { get; set; }
         public IList<Tag> Tags { get; set; }
         public IList<ApartmentPicture> Pictures { get; set; }
+        public IList<Review> Reviews { get; set; }
         
     }
 }
